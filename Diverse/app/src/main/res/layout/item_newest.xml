@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.guowei.diverse.ui.learn.newest.NewestItemViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.guowei.diverse.ui.learn.newest.NewestItemViewModel" />
+    </data>
+
+    <android.support.v7.widget.CardView
+
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_12"
+        android:layout_marginStart="@dimen/dp_12"
+        android:layout_marginTop="@dimen/dp_8"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/color1"
+        app:cardCornerRadius="@dimen/dp_3"
+        app:cardElevation="@dimen/dp_2">
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:binding="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            binding:onClickCommand="@{viewModel.itemClick}"
+            binding:onLongClickCommand="@{viewModel.itemLongClick}"
+            android:padding="@dimen/dp_12">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/item_search_pager_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@mipmap/icon_author"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:drawableStart="@mipmap/icon_author"
+                    android:gravity="center"
+                    android:text="@{viewModel.entity.author}"
+                    android:textColor="@color/comment_text" />
+
+                <TextView
+                    android:id="@+id/item_search_pager_chapterName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/item_search_pager_author"
+                    android:layout_toRightOf="@id/item_search_pager_author"
+                    android:gravity="end"
+                    android:text="@{viewModel.entity.superChapterName}"
+                    android:textColor="@color/colorPrimaryOverlay" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/item_search_pager_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="@{viewModel.entity.title}"
+                android:textColor="@color/comment_text"
+                android:textSize="@dimen/sp_16" />
+
+
+            <TextView
+                android:id="@+id/item_search_pager_niceDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_time"
+                android:drawablePadding="10dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginRight="@dimen/dp_20"
+                android:text="@{viewModel.entity.niceDate}"
+                />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</layout>
