@@ -2,11 +2,15 @@ package com.guowei.diverse.api
 
 
 import com.guowei.diverse.api.Api.WANANDROID
+import com.guowei.diverse.model.ApiResponse
+import com.guowei.diverse.model.BannerModel
+import com.guowei.diverse.model.NewestModel
 import io.reactivex.Observable
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager.DOMAIN_NAME_HEADER
 import okhttp3.ResponseBody
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Path
 
 
 /**
@@ -24,4 +28,10 @@ interface LearnService{
      */
     @GET("/wxarticle/chapters/json")
     abstract fun getUsers(): Observable<ResponseBody>
+
+    @GET("/article/list/{page}/json")
+    abstract fun getNewest(@Path("page") page: Int): Observable<ApiResponse<NewestModel>>
+
+    @GET("/banner/json")
+    abstract fun getBanner(): Observable<ApiResponse<List<BannerModel>>>
 }

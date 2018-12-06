@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.guowei.diverse.R
+import com.guowei.diverse.ui.learn.newest.NewestFragment
+import com.guowei.diverse.ui.learn.tree.TreeFragment
 import com.guowei.diverse.ui.news.NewsFragment
 import kotlinx.android.synthetic.main.fragment_learn.*
 import java.util.*
@@ -33,8 +35,8 @@ class LearnFragment : Fragment() {
         val titles = arrayOf("最新文章","知识体系","公众号","导航","项目").toList()
         mFragments = ArrayList()
         mFragments?.run {
-            add(NewsFragment())
-            add(NewsFragment())
+            add(NewestFragment())
+            add(TreeFragment())
             add(NewsFragment())
             add(NewsFragment())
             add(NewsFragment())

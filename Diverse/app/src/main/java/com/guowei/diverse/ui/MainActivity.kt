@@ -54,11 +54,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
 
     private fun initBottomTab() {
         val navigationController = binding.pagerBottomTab.material()
-                .addItem(R.mipmap.yingyong, titles[0])
+                .addItem(R.mipmap.yingyong, titles[0],ContextCompat.getColor(this, R.color.color3))
                 .addItem(R.mipmap.huanzhe, titles[1])
                 .addItem(R.mipmap.xiaoxi_select, titles[2])
                 .addItem(R.mipmap.wode_select, titles[3])
-                .setDefaultColor(ContextCompat.getColor(this, R.color.Blue))
+                .setDefaultColor(ContextCompat.getColor(this, R.color.color5))
                 .build()
         //底部按钮的点击事件监听
         navigationController.addTabItemSelectedListener(object : OnTabItemSelectedListener {
