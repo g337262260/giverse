@@ -5,7 +5,7 @@
     <color name="colorAccent">#88B7C9</color>
     <color name="textColorVice">#88B7C9</color>
 
-
+    //----------------Theme---------------------------
     <color name="color1">#EDF4FA</color>
     <color name="color2">#C9DEEF</color>
     <color name="color3">#88B7C9</color>
@@ -13,6 +13,10 @@
     <color name="color5">#8B7991</color>
     <color name="color6">#E0BFC8</color>
 
+    //-----------------Content-------------------------
+    <color name="learn_title">#5b5d5c</color>
+    <color name="tag_bg_normal">#eeeeee</color>
+    <color name="tag_bg_pressed">#d2d2d2</color>
 
     //-------------------------------------
     <color name="fab_bg">#FF4081</color>

@@ -3,11 +3,11 @@
 
     <data>
 
-        <import type="com.guowei.diverse.ui.learn.tree.TreeViewModel" />
+        <import type="com.guowei.diverse.ui.learn.tree.child.TreeChildViewModel" />
 
         <variable
             name="viewModel"
-            type="com.guowei.diverse.ui.learn.tree.TreeViewModel" />
+            type="com.guowei.diverse.ui.learn.tree.child.TreeChildViewModel" />
 
         <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
 
@@ -25,10 +25,10 @@
             android:id="@+id/twinklingRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            binding:onLoadMoreCommand="@{viewModel.onLoadMoreCommand}"
             binding:onRefreshCommand="@{viewModel.onRefreshCommand}"
             binding:tr_bottom_height="80dp"
             binding:tr_head_height="80dp">
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/newest_recycler"
                 android:layout_width="match_parent"
@@ -38,8 +38,6 @@
                 binding:items="@{viewModel.observableList}"
                 binding:layoutManager="@{LayoutManagers.linear()}"
                 binding:lineManager="@{LineManagers.horizontal()}" />
-
-
         </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
 
     </LinearLayout>

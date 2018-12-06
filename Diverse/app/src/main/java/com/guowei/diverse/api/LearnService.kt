@@ -5,6 +5,7 @@ import com.guowei.diverse.api.Api.WANANDROID
 import com.guowei.diverse.model.ApiResponse
 import com.guowei.diverse.model.BannerModel
 import com.guowei.diverse.model.NewestModel
+import com.guowei.diverse.model.TreeModel
 import io.reactivex.Observable
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager.DOMAIN_NAME_HEADER
 import okhttp3.ResponseBody
@@ -34,4 +35,10 @@ interface LearnService{
 
     @GET("/banner/json")
     abstract fun getBanner(): Observable<ApiResponse<List<BannerModel>>>
+
+    @GET("/tree/json")
+    abstract fun getTree(): Observable<ApiResponse<List<TreeModel>>>
+
+    @GET("/article/list/{page}/json?cid={cid}")
+    abstract fun getTreeChild(@Path("page") page: Int,@Path("cid") cid: Int): Observable<ApiResponse<NewestModel>>
 }

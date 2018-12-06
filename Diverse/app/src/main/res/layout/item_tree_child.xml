@@ -4,11 +4,11 @@
 
     <data>
 
-        <import type="com.guowei.diverse.ui.learn.newest.NewestItemViewModel" />
+        <import type="com.guowei.diverse.ui.learn.tree.child.TreeChildItemViewModel" />
 
         <variable
             name="viewModel"
-            type="com.guowei.diverse.ui.learn.newest.NewestItemViewModel" />
+            type="com.guowei.diverse.ui.learn.tree.child.TreeChildItemViewModel" />
     </data>
 
     <android.support.v7.widget.CardView
