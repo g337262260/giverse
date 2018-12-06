@@ -64,4 +64,5 @@ dependencies {
     implementation 'me.jessyan:retrofit-url-manager:1.4.0'
     implementation 'com.just.agentweb:agentweb:4.0.2'
     implementation rootProject.ext.dependencies.banner
+    implementation rootProject.ext.dependencies.flowlayout
 }
