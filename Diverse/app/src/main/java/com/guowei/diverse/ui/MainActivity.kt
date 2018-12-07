@@ -5,11 +5,15 @@ import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import com.guowei.diverse.BR
 import com.guowei.diverse.R
+import com.guowei.diverse.R.id.title_content
+import com.guowei.diverse.R.layout.title_bar
+
 import com.guowei.diverse.databinding.ActivityMainBinding
 import com.guowei.diverse.ui.learn.LearnFragment
 import com.guowei.diverse.ui.media.MediaFragment
 import com.guowei.diverse.ui.news.NewsFragment
-import kotlinx.android.synthetic.main.title_bar.*
+import com.guowei.diverse.ui.other.OtherFragment
+
 import me.goldze.mvvmhabit.base.BaseActivity
 import me.goldze.mvvmhabit.base.BaseViewModel
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener
@@ -44,7 +48,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
             add(LearnFragment())
             add(NewsFragment())
             add(MediaFragment())
-            add(LearnFragment())
+            add(OtherFragment())
         }
         //默认选中第一个
         val transaction = supportFragmentManager.beginTransaction()

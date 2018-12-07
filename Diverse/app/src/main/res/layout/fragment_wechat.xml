@@ -3,11 +3,11 @@
 
     <data>
 
-        <import type="com.guowei.diverse.ui.learn.tree.child.TreeChildViewModel" />
+        <import type="com.guowei.diverse.ui.learn.wechat.WechatViewModel" />
 
         <variable
             name="viewModel"
-            type="com.guowei.diverse.ui.learn.tree.child.TreeChildViewModel" />
+            type="com.guowei.diverse.ui.learn.wechat.WechatViewModel" />
 
         <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
 
@@ -20,15 +20,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <include layout="@layout/title_bar"/>
+
         <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
             android:id="@+id/twinklingRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            binding:onLoadMoreCommand="@{viewModel.onLoadMoreCommand}"
             binding:onRefreshCommand="@{viewModel.onRefreshCommand}"
             binding:tr_bottom_height="80dp"
             binding:tr_head_height="80dp">
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/newest_recycler"
                 android:layout_width="match_parent"
@@ -36,8 +36,10 @@
                 binding:adapter="@{viewModel.adapter}"
                 binding:itemBinding="@{viewModel.itemBinding}"
                 binding:items="@{viewModel.observableList}"
-                binding:layoutManager="@{LayoutManagers.linear()}"
+                binding:layoutManager="@{LayoutManagers.grid(4)}"
                 binding:lineManager="@{LineManagers.horizontal()}" />
+
+
         </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
 
     </LinearLayout>

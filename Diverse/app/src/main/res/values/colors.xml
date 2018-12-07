@@ -17,78 +17,41 @@
     <color name="learn_title">#5b5d5c</color>
     <color name="tag_bg_normal">#eeeeee</color>
     <color name="tag_bg_pressed">#d2d2d2</color>
+    <color name="vertical_tab_layout_bg">@color/Grey100</color>
+    <color name="vertical_tab_layout_indicator_color">@color/White</color>
 
     //-------------------------------------
-    <color name="fab_bg">#FF4081</color>
-    <color name="drawer_item_bg_p">#e8e8e8</color>
-    <color name="drawer_item_bg_n">#fffff9</color>
-    <color name="news_unread">#000000</color>
-    <color name="news_read">#898989</color>
+    <color name="White">#FFFFFF</color>
+    <color name="Black">#000000</color>
+    <color name="Red">#f44336</color>
+    <color name="Pink">#e91e63</color>
+    <color name="Purple">#9c27b0</color>
+    <color name="Deep_Purple">#673ab7</color>
+    <color name="Indigo">#3f51b5</color>
+    <color name="Blue">#2196f3</color>
+    <color name="Light_Blue">#03a9f4</color>
+    <color name="Cyan">#00bcd4</color>
+    <color name="Teal">#009688</color>
+    <color name="Green">#4caf50</color>
+    <color name="Light_Green">#8bc34a</color>
+    <color name="Lime">#cddc39</color>
+    <color name="Yellow">#ffeb3b</color>
+    <color name="Amber">#ffc107</color>
+    <color name="Orange">#ff9800</color>
+    <color name="Deep_Orange">#ff5722</color>
+    <color name="Brown">#795548</color>
+    <color name="Grey">#9e9e9e</color>
+    <color name="Blue_Grey">#607d8b</color>
 
-    <color name="comment_text">#5b5d5c</color>
-    <color name="setting_text">#5b5d5c</color>
-    <color name="comment_reply">#9ba4a3</color>
-    <color name="comment_btn">#bfbfbf</color>
-    <color name="comment_line">#dddddd</color>
-    <color name="comment_at">#5d8698</color>
-    <color name="gold_title">#3F51B5</color>
-    <color name="topic_text">#afafaf</color>
-    <color name="grey_search">#FF999999</color>
-    <color name="colorPrimaryOverlay">#00abff</color>
-    <color name="delete_text">#cccccc</color>
-    <color name="deep_grey">#e6e6e6</color>
-    <color name="dialog_background">#ffffff</color>
-    <color name="yellow">#f39c12</color>
-    <color name="search_grey_gone">#bbbbbb</color>
-    <color name="search_grey">#FF000000</color>
-    <color name="main_status_bar_blue">#279ede</color>
-    <color name="search_status_bar_white">#ffffff</color>
-    <color name="register_bac">#303c59</color>
-
-    //other
-    <color name="shallow_green">#FF36BC9B</color>
-    <color name="shallow_grey">#FF757575</color>
-    <color name="card_color">#202124</color>
-    <color name="not_network_bac">#33ffffff</color>
-    <color name="grey">#cccccc</color>
-
-    <color name="grey_bg">#EDEDED</color>
-    <color name="blue_dark_btn">#009eff</color>
-    <color name="blue_btn">#35B0FF</color>
-    <color name="card_bac">#f7f3f3</color>
-    <color name="light_light_yellow">#dcd3ba</color>
-    <color name="light_yellow">#e7c054</color>
-    <color name="light_red">#e26d2e</color>
-    <color name="light_deep_red">#f9382a</color>
-    <color name="deep_red">#dc3b1f</color>
-    <color name="while_most_color">#e4e4e4</color>
-    <color name="blackish_green">#6D8FB0</color>
-    <color name="text_bg">#8F9AA8</color>
-
-    <!--通用触摸背景色-->
-    <color name="common_touch_bg">#E3E3E3</color>
-    <!--通用背景色-->
-    <color name="common_bg">@color/white</color>
-
-    <color name="light_transparent">#00ffffff</color>
-    <color name="transparent">#00000000</color>
-    <color name="white">#ffffff</color>
-    <color name="light_white">#f4f0f0</color>
-    <color name="black">#333333</color>
-    <color name="title_black">#222222</color>
-    <color name="common_black_bac">#2b2929</color>
-    <color name="grey_divider">#E5E5E5</color>
-    <color name="blue">#3F9FE0</color>
-    <color name="deep_blue">#0539be</color>
-    <color name="grey_bar">#ECECEC</color>
-    <color name="light_green">#3fc75f</color>
-    <color name="light_blue">#bf33efcd</color>
-    <color name="grey_bac_refresh">#555</color>
-    <color name="grey_text_refresh">#aaa</color>
-    <color name="message_stroke_line">#DDDDDD</color>
-    <color name="tab_bac">#049486</color>
-    <color name="light_tab_bac">#45c1b5</color>
-    <color name="indicator_color">#115E56</color>
-    <color name="navigation_selected">#FF36BC9B</color>
-    <color name="navigation_normal">#FF757575</color>
+    //------------------------------------------------
+    <color name="Grey50">#FAFAFA</color>
+    <color name="Grey100">#F5F5F5</color>
+    <color name="Grey200">#EEEEEE</color>
+    <color name="Grey300">#E0E0E0</color>
+    <color name="Grey400">#bdbdbd</color>
+    <color name="Grey500">#9e9e9e</color>
+    <color name="Grey600">#757575</color>
+    <color name="Grey700">#616161</color>
+    <color name="Grey800">#424242</color>
+    <color name="Grey900">#212121</color>
 </resources>

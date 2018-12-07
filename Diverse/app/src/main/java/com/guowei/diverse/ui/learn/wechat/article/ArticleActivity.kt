@@ -1,21 +1,21 @@
-package com.guowei.diverse.ui.learn.tree.child
+package com.guowei.diverse.ui.learn.wechat.article
 
 import android.databinding.Observable
 import android.os.Bundle
 import android.view.View
 import com.guowei.diverse.BR
 import com.guowei.diverse.R
-import com.guowei.diverse.databinding.ActivityTreeItemBinding
-import com.guowei.diverse.model.TreeModel
+import com.guowei.diverse.databinding.ActivityArticleBinding
+import com.guowei.diverse.model.Author
 import kotlinx.android.synthetic.main.title_bar.*
 import me.goldze.mvvmhabit.base.BaseActivity
 import me.goldze.mvvmhabit.utils.KLog
 
-class TreeChildActivity : BaseActivity<ActivityTreeItemBinding,TreeChildViewModel>() {
+class ArticleActivity : BaseActivity<ActivityArticleBinding,ArticleViewModel>() {
 
 
     override fun initContentView(savedInstanceState: Bundle?): Int {
-        return R.layout.activity_tree_item
+        return R.layout.activity_article
     }
 
     override fun initVariableId(): Int {
@@ -23,7 +23,7 @@ class TreeChildActivity : BaseActivity<ActivityTreeItemBinding,TreeChildViewMode
     }
 
     override fun initData() {
-        val entity = intent.getParcelableExtra<TreeModel.ChildrenBean>("entity")
+        val entity = intent.getParcelableExtra<Author>("entity")
         KLog.d("entity",entity)
         viewModel.requestNetWork(entity.id)
         title_left_icon.visibility = View.VISIBLE

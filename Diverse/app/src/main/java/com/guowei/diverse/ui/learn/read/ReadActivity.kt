@@ -5,14 +5,12 @@ import android.app.Activity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.KeyEvent
-import android.view.View
 import android.webkit.WebSettings
 import android.widget.LinearLayout
 import com.guowei.diverse.R
 import com.guowei.diverse.model.NewestModel
 import com.just.agentweb.AgentWeb
 import kotlinx.android.synthetic.main.activity_read.*
-import kotlinx.android.synthetic.main.title_bar.*
 
 class ReadActivity : Activity() {
 
@@ -30,7 +28,6 @@ class ReadActivity : Activity() {
         val entity = intent.getParcelableExtra<NewestModel.DatasBean>("entity")
         title_bar.setBackgroundColor(ContextCompat.getColor(this,R.color.color3))
         title_content.text = entity.title
-        title_left_icon.visibility = View.VISIBLE
         title_left_icon.setOnClickListener { finish() }
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(mWebContent, LinearLayout.LayoutParams(-1, -1))

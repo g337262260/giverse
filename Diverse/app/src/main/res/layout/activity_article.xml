@@ -3,11 +3,11 @@
 
     <data>
 
-        <import type="com.guowei.diverse.ui.learn.tree.child.TreeChildViewModel" />
+        <import type="com.guowei.diverse.ui.learn.wechat.article.ArticleViewModel" />
 
         <variable
             name="viewModel"
-            type="com.guowei.diverse.ui.learn.tree.child.TreeChildViewModel" />
+            type="com.guowei.diverse.ui.learn.wechat.article.ArticleViewModel" />
 
         <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
 
