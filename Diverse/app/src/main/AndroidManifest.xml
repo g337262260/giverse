@@ -25,7 +25,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.learn.read.ReadActivity" />
-        <activity android:name=".ui.learn.tree.child.TreeChildActivity"/>
+        <activity android:name=".ui.learn.tree.child.TreeChildActivity" />
+        <activity android:name=".ui.test.TestActivity" />
+        <activity android:name=".ui.learn.wechat.article.ArticleActivity"></activity>
     </application>
 
 </manifest>

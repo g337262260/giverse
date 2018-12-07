@@ -1,21 +1,24 @@
-package com.guowei.diverse.ui.learn.tree.child
+package com.guowei.diverse.ui.learn.project
+
 
 import android.databinding.Observable
 import android.os.Bundle
-import android.view.View
+import android.support.v4.app.Fragment
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.guowei.diverse.BR
 import com.guowei.diverse.R
-import com.guowei.diverse.databinding.ActivityTreeItemBinding
-import com.guowei.diverse.model.TreeModel
-import kotlinx.android.synthetic.main.title_bar.*
-import me.goldze.mvvmhabit.base.BaseActivity
-import me.goldze.mvvmhabit.utils.KLog
-
-class TreeChildActivity : BaseActivity<ActivityTreeItemBinding,TreeChildViewModel>() {
+import com.guowei.diverse.databinding.FragmentProjectBinding
+import me.goldze.mvvmhabit.base.BaseFragment
 
 
-    override fun initContentView(savedInstanceState: Bundle?): Int {
-        return R.layout.activity_tree_item
+/**
+ * A simple [Fragment] subclass.
+ */
+class ProjectFragment : BaseFragment<FragmentProjectBinding,ProjectViewModel>() {
+
+    override fun initContentView(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?): Int {
+        return R.layout.fragment_project
     }
 
     override fun initVariableId(): Int {
@@ -23,12 +26,8 @@ class TreeChildActivity : BaseActivity<ActivityTreeItemBinding,TreeChildViewMode
     }
 
     override fun initData() {
-        val entity = intent.getParcelableExtra<TreeModel.ChildrenBean>("entity")
-        KLog.d("entity",entity)
-        viewModel.requestNetWork(entity.id)
-        title_left_icon.visibility = View.VISIBLE
-        title_left_icon.setOnClickListener { finish() }
-        title_content.text = entity.name
+        viewModel.requestProject()
+        viewModel.requestNetWork(294)
     }
 
     override fun initViewObservable() {

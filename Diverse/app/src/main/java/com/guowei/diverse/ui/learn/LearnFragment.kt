@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.guowei.diverse.R
+import com.guowei.diverse.ui.learn.navigation.NavigationFragment
 import com.guowei.diverse.ui.learn.newest.NewestFragment
+import com.guowei.diverse.ui.learn.project.ProjectFragment
 import com.guowei.diverse.ui.learn.tree.TreeFragment
-import com.guowei.diverse.ui.news.NewsFragment
+import com.guowei.diverse.ui.learn.wechat.WechatFragment
 import kotlinx.android.synthetic.main.fragment_learn.*
 import java.util.*
 
@@ -37,12 +39,13 @@ class LearnFragment : Fragment() {
         mFragments?.run {
             add(NewestFragment())
             add(TreeFragment())
-            add(NewsFragment())
-            add(NewsFragment())
-            add(NewsFragment())
+            add(WechatFragment())
+            add(NavigationFragment())
+            add(ProjectFragment())
         }
         learn_viewpager.adapter = activity?.let { LearnFragmentAdapter(childFragmentManager, it, mFragments!!,titles) }
         learn_tab.setupWithViewPager(learn_viewpager)
+        learn_viewpager.offscreenPageLimit = 3
     }
 
 }

@@ -1,24 +1,24 @@
-package com.guowei.diverse.ui.learn.tree
+package com.guowei.diverse.ui.learn.navigation
 
 import android.os.Bundle
-import com.guowei.diverse.model.TreeModel
-import com.guowei.diverse.ui.learn.tree.child.TreeChildActivity
+import com.guowei.diverse.model.NavigationModel
+import com.guowei.diverse.model.NewestModel
+import com.guowei.diverse.ui.learn.read.ReadActivity
 import com.zhy.view.flowlayout.TagFlowLayout
 import me.goldze.mvvmhabit.base.ItemViewModel
 import me.goldze.mvvmhabit.binding.command.BindingAction
 import me.goldze.mvvmhabit.binding.command.BindingCommand
 import me.goldze.mvvmhabit.binding.command.BindingConsumer
-import me.goldze.mvvmhabit.utils.KLog
 import me.goldze.mvvmhabit.utils.Utils.getContext
 
 /**
  * Writer：GuoWei_aoj on 2018/12/5 0005 09:51
  * description:
  */
-class TreeItemViewModel : ItemViewModel<TreeViewModel> {
+class NavigationItemViewModel : ItemViewModel<NavigationViewModel> {
 
 
-    lateinit var entity: TreeModel
+    lateinit var entity: NavigationModel
     lateinit var tfl :TagFlowLayout
 
     //条目的点击事件
@@ -30,22 +30,23 @@ class TreeItemViewModel : ItemViewModel<TreeViewModel> {
     var itemLongClick = BindingCommand<BindingAction>(BindingAction { })
 
 
-    constructor(viewModel: TreeViewModel, entity: TreeModel) : super(viewModel) {
+    constructor(viewModel: NavigationViewModel, entity: NavigationModel) : super(viewModel) {
         this.entity = entity
 
     }
 
-    constructor(viewModel: TreeViewModel) : super(viewModel)
+    constructor(viewModel: NavigationViewModel) : super(viewModel)
 
     var tagFlowLayout: BindingCommand<TagFlowLayout> = BindingCommand(BindingConsumer {
-        tfl -> this@TreeItemViewModel.tfl = tfl
-        tfl.adapter = TreeTagAdapter(getContext(), entity.children)
+        tfl -> this@NavigationItemViewModel.tfl = tfl
+        tfl.adapter = NavigationTagAdapter(getContext(), entity.articles)
         tfl.setOnTagClickListener({ _, pos, _ ->
-            KLog.d("treechild"+entity.children?.get(pos)?.id)
-            KLog.d("treechild"+viewModel)
             val mBundle = Bundle()
-            mBundle.putParcelable("entity", entity.children?.get(pos))
-            viewModel.startActivity(TreeChildActivity::class.java,mBundle)
+            val data = NewestModel.DatasBean()
+            data.title = entity.articles[pos].title
+            data.link = entity.articles[pos].link
+            mBundle.putParcelable("entity", data)
+            viewModel.startActivity(ReadActivity::class.java,mBundle)
             true
         })
     })

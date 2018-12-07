@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout >
+
+    <data>
+
+        <import type="com.guowei.diverse.ui.learn.navigation.NavigationViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.guowei.diverse.ui.learn.navigation.NavigationViewModel" />
+
+        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
+
+        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LineManagers" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:binding="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <q.rorbin.verticaltablayout.VerticalTabLayout
+            android:id="@+id/navigation_tab_layout"
+            android:layout_width="@dimen/dp_110"
+            android:layout_height="match_parent"
+            android:background="@color/vertical_tab_layout_bg"
+            app:indicator_color="@color/vertical_tab_layout_indicator_color"
+            app:indicator_gravity="fill"
+            binding:currentView="@{viewModel.verticaltablayout}"
+            app:tab_height="@dimen/dp_50"
+            app:tab_margin="@dimen/dp_10"
+            app:tab_mode="scrollable" />
+
+        <View
+            android:id="@+id/navigation_divider"
+            android:layout_width="@dimen/dp_05"
+            android:layout_height="match_parent"
+            android:background="#E0E0E0" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/navigation_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            binding:adapter="@{viewModel.adapter}"
+            binding:itemBinding="@{viewModel.itemBinding}"
+            binding:items="@{viewModel.observableList}"
+            binding:lineManager="@{LineManagers.horizontal()}" />
+    </LinearLayout>
+</layout>

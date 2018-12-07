@@ -6,7 +6,52 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.guowei.diverse.ui.learn.read.ReadActivity">
-    <include layout="@layout/title_bar"/>
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:background="@color/color3"
+            android:layout_height="?attr/actionBarSize">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/title_left_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_back"
+                    android:layout_centerVertical="true"
+                    tools:ignore="VectorDrawableCompat" />
+                <ImageView
+                    android:id="@+id/title_right_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentRight="true" />
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+        <TextView
+            android:id="@+id/title_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:maxLines="1"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
+    </FrameLayout>
     <FrameLayout
         android:id="@+id/mWebContent"
         android:layout_width="match_parent"

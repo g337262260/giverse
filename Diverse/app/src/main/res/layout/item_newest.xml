@@ -52,7 +52,7 @@
                     android:drawableStart="@drawable/article_author"
                     android:gravity="center"
                     android:text="@{viewModel.entity.author}"
-                    android:textColor="@color/comment_text" />
+                    android:textColor="@color/learn_title" />
 
                 <TextView
                     android:id="@+id/item_search_pager_chapterName"
@@ -65,7 +65,7 @@
                     android:layout_toRightOf="@id/item_search_pager_author"
                     android:gravity="end"
                     android:text="@{viewModel.entity.superChapterName}"
-                    android:textColor="@color/colorPrimaryOverlay" />
+                    android:textColor="@color/color5" />
             </RelativeLayout>
 
             <TextView
