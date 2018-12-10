@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import com.guowei.diverse.BR
 import com.guowei.diverse.R
 import com.guowei.diverse.databinding.FragmentNewestBinding
-import com.guowei.diverse.model.BannerModel
-import com.guowei.diverse.model.NewestModel
+import com.guowei.diverse.model.learn.BannerModel
+import com.guowei.diverse.model.learn.NewestModel
 import com.guowei.diverse.ui.learn.read.ReadActivity
 import com.guowei.diverse.util.GlideImageLoader
 import com.youth.banner.BannerConfig

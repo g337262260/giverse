@@ -1,8 +1,8 @@
 package com.guowei.diverse.ui.learn.navigation
 
 import android.os.Bundle
-import com.guowei.diverse.model.NavigationModel
-import com.guowei.diverse.model.NewestModel
+import com.guowei.diverse.model.learn.NavigationModel
+import com.guowei.diverse.model.learn.NewestModel
 import com.guowei.diverse.ui.learn.read.ReadActivity
 import com.zhy.view.flowlayout.TagFlowLayout
 import me.goldze.mvvmhabit.base.ItemViewModel

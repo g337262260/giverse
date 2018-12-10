@@ -12,8 +12,8 @@ import com.guowei.diverse.api.Api.APP_DEFAULT_DOMAIN
 import com.guowei.diverse.api.Api.WANANDROID
 import com.guowei.diverse.app.NetWorkManager
 import com.guowei.diverse.model.ApiResponse
-import com.guowei.diverse.model.BannerModel
-import com.guowei.diverse.model.NewestModel
+import com.guowei.diverse.model.learn.BannerModel
+import com.guowei.diverse.model.learn.NewestModel
 import com.guowei.diverse.util.TransformerUtil
 import com.guowei.diverse.util.TransformerUtil.Companion.getDefaultTransformer
 import io.reactivex.Observer

@@ -18,6 +18,7 @@ package com.guowei.diverse.app;
 import android.content.Context;
 
 import com.guowei.diverse.BuildConfig;
+import com.guowei.diverse.api.KaiyanService;
 import com.guowei.diverse.api.LearnService;
 
 import java.io.File;
@@ -51,6 +52,7 @@ public class NetWorkManager {
     private OkHttpClient mOkHttpClient;
     private Retrofit mRetrofit;
     private LearnService mLearnService;
+    private KaiyanService mKaiyanService;
 
     private static Context mContext = Utils.getContext();
     //缓存时间
@@ -115,6 +117,7 @@ public class NetWorkManager {
                 .build();
 
         this.mLearnService = mRetrofit.create(LearnService.class);
+        this.mKaiyanService = mRetrofit.create(KaiyanService.class);
 
     }
 
@@ -128,6 +131,9 @@ public class NetWorkManager {
 
     public LearnService getLearnService() {
         return mLearnService;
+    }
+    public KaiyanService getKaiyanService() {
+        return mKaiyanService;
     }
 
 }

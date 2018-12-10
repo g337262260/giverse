@@ -6,7 +6,7 @@ import android.view.View
 import com.guowei.diverse.BR
 import com.guowei.diverse.R
 import com.guowei.diverse.databinding.ActivityTreeItemBinding
-import com.guowei.diverse.model.TreeModel
+import com.guowei.diverse.model.learn.TreeModel
 import kotlinx.android.synthetic.main.title_bar.*
 import me.goldze.mvvmhabit.base.BaseActivity
 import me.goldze.mvvmhabit.utils.KLog

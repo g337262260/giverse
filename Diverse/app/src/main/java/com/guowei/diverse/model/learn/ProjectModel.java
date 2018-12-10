@@ -1,4 +1,4 @@
-package com.guowei.diverse.model;
+package com.guowei.diverse.model.learn;
 
 import java.util.List;
 

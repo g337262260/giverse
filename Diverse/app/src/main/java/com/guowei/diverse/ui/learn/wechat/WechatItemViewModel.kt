@@ -1,7 +1,7 @@
 package com.guowei.diverse.ui.learn.wechat
 
 import android.os.Bundle
-import com.guowei.diverse.model.Author
+import com.guowei.diverse.model.learn.Author
 import com.guowei.diverse.ui.learn.wechat.article.ArticleActivity
 import me.goldze.mvvmhabit.base.ItemViewModel
 import me.goldze.mvvmhabit.binding.command.BindingAction

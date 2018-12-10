@@ -9,8 +9,8 @@ import com.guowei.diverse.R
 import com.guowei.diverse.api.Api
 import com.guowei.diverse.app.NetWorkManager
 import com.guowei.diverse.model.ApiResponse
-import com.guowei.diverse.model.NewestModel
-import com.guowei.diverse.model.ProjectModel
+import com.guowei.diverse.model.learn.NewestModel
+import com.guowei.diverse.model.learn.ProjectModel
 import com.guowei.diverse.util.TransformerUtil
 import com.zhy.view.flowlayout.TagFlowLayout
 import io.reactivex.Observer

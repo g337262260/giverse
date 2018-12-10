@@ -1,5 +1,6 @@
 package com.guowei.diverse.app
 
+import android.app.Application
 import com.guowei.diverse.BuildConfig
 import com.guowei.diverse.R
 import me.goldze.mvvmhabit.base.BaseApplication
@@ -11,7 +12,7 @@ import me.goldze.mvvmhabit.utils.KLog
  * description:
  */
 
-class AppApplication : BaseApplication() {
+class DiverseApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
         //是否开启打印日志
@@ -37,5 +38,9 @@ class AppApplication : BaseApplication() {
                 //                .errorActivity(YourCustomErrorActivity.class) //崩溃后的错误activity
                 //                .eventListener(new YourCustomEventListener()) //崩溃后的错误监听
                 .apply()
+    }
+
+    companion object {
+        lateinit var INSTANCE: Application
     }
 }

@@ -118,7 +118,7 @@ class NavigationFragment : BaseFragment<FragmentNavigationBinding,NavigationView
     private fun scrollRecyclerView() {
         bScroll = false
         val indexDistance: Int = currentIndex - linearLayoutManager.findFirstVisibleItemPosition()
-        if (indexDistance > 0 && indexDistance < binding.navigationRecycler!!.childCount) {
+        if (indexDistance > 0 && indexDistance < binding.navigationRecycler.childCount) {
             val top: Int = binding.navigationRecycler.getChildAt(indexDistance).top
             binding.navigationRecycler.smoothScrollBy(0, top)
         }

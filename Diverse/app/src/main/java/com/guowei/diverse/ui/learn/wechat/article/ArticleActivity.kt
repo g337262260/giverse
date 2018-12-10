@@ -6,7 +6,7 @@ import android.view.View
 import com.guowei.diverse.BR
 import com.guowei.diverse.R
 import com.guowei.diverse.databinding.ActivityArticleBinding
-import com.guowei.diverse.model.Author
+import com.guowei.diverse.model.learn.Author
 import kotlinx.android.synthetic.main.title_bar.*
 import me.goldze.mvvmhabit.base.BaseActivity
 import me.goldze.mvvmhabit.utils.KLog
