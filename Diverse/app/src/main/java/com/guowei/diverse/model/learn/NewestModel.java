@@ -1,4 +1,4 @@
-package com.guowei.diverse.model;
+package com.guowei.diverse.model.learn;
 
 import android.os.Parcel;
 import android.os.Parcelable;

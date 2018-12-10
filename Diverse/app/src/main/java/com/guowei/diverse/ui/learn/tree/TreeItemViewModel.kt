@@ -1,7 +1,7 @@
 package com.guowei.diverse.ui.learn.tree
 
 import android.os.Bundle
-import com.guowei.diverse.model.TreeModel
+import com.guowei.diverse.model.learn.TreeModel
 import com.guowei.diverse.ui.learn.tree.child.TreeChildActivity
 import com.zhy.view.flowlayout.TagFlowLayout
 import me.goldze.mvvmhabit.base.ItemViewModel

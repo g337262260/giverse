@@ -9,7 +9,7 @@ import com.guowei.diverse.R
 import com.guowei.diverse.api.Api
 import com.guowei.diverse.app.NetWorkManager
 import com.guowei.diverse.model.ApiResponse
-import com.guowei.diverse.model.TreeModel
+import com.guowei.diverse.model.learn.TreeModel
 import com.guowei.diverse.util.TransformerUtil
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable

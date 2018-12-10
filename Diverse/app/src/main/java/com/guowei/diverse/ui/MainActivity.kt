@@ -1,19 +1,17 @@
 package com.guowei.diverse.ui
 
+
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import com.guowei.diverse.BR
 import com.guowei.diverse.R
-import com.guowei.diverse.R.id.title_content
-import com.guowei.diverse.R.layout.title_bar
-
 import com.guowei.diverse.databinding.ActivityMainBinding
 import com.guowei.diverse.ui.learn.LearnFragment
-import com.guowei.diverse.ui.media.MediaFragment
+import com.guowei.diverse.ui.kaiyan.KaiyanFragment
 import com.guowei.diverse.ui.news.NewsFragment
 import com.guowei.diverse.ui.other.OtherFragment
-
+import kotlinx.android.synthetic.main.activity_read.*
 import me.goldze.mvvmhabit.base.BaseActivity
 import me.goldze.mvvmhabit.base.BaseViewModel
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener
@@ -23,7 +21,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
 
     private var mFragments: ArrayList<Fragment>? = null
 
-    private val titles = arrayOf("学习","资讯","视频","其他")
+    private val titles = arrayOf("学习","开眼","视频","其他")
 
     override fun initVariableId(): Int {
         return BR.viewModel
@@ -46,8 +44,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
         mFragments = ArrayList()
         mFragments?.run {
             add(LearnFragment())
+            add(KaiyanFragment())
             add(NewsFragment())
-            add(MediaFragment())
             add(OtherFragment())
         }
         //默认选中第一个

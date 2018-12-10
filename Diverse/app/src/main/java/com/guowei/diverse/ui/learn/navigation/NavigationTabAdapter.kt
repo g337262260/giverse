@@ -4,7 +4,7 @@ import android.content.Context
 import android.support.v4.content.ContextCompat
 import com.guowei.diverse.R
 
-import com.guowei.diverse.model.NavigationModel
+import com.guowei.diverse.model.learn.NavigationModel
 import q.rorbin.verticaltablayout.adapter.TabAdapter
 import q.rorbin.verticaltablayout.widget.ITabView
 

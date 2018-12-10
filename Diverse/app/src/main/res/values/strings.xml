@@ -5,4 +5,36 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error_tips">不妙！加载失败了ヽ(≧Д≦)ノ\n 告诉大佬一些可能的原因：\n1.不可直视的网络环境\n 2.服务器大哥的不定期抽风\n 3.WanAndroid眼冒金星拒绝服务喔~</string>
     <string name="reload">重新加载</string>
+
+
+    //------------------------------------------------------------------
+    <string name="mine">我的</string>
+    <string name="hot">热门</string>
+    <string name="discover">发现</string>
+    <string name="homePage">首页</string>
+    <string name="confirm">确认</string>
+    <string name="cancel">取消</string>
+    <string name="content">内容</string>
+    <string name="exitTip">再按一次退出程序</string>
+    <string name="focus">关注</string>
+    <string name="notify">通知</string>
+    <string name="net_error_tip">网络错误\n点击屏幕重试</string>
+    <string name="search_hint_tip">搜索视频、作者、以及标签</string>
+    <string name="search_empty_message">很抱歉没有找到相匹配的内容</string>
+    <string name="searchTip">可以通过所属分类, \n以及标题或者描述中的关键词来查找</string>
+    <string name="searchHistory">搜索历史</string>
+    <string name="delete">删除</string>
+    <string name="search_key_word">热搜关键词</string>
+    <string name="login_tip">点击登录即可发表评论及同步已喜欢视频</string>
+    <string name="preload">缓存</string>
+    <string name="like">喜欢</string>
+    <string name="the_end">- The End -</string>
+    <string name="subscription">Subscription</string>
+    <string name="notification">Notification</string>
+    <string name="donotmiss">别错过重要的信息</string>
+    <string name="after_login">登录后即可查看评论回复、点赞及关注等通知信息</string>
+    <string name="login">登录</string>
+    <string name="publish">发布:</string>
+    <string name="rewind"><![CDATA[<<]]></string>
+    <string name="fast_forward"><![CDATA[>>]]></string>
 </resources>

@@ -8,7 +8,7 @@ import android.view.KeyEvent
 import android.webkit.WebSettings
 import android.widget.LinearLayout
 import com.guowei.diverse.R
-import com.guowei.diverse.model.NewestModel
+import com.guowei.diverse.model.learn.NewestModel
 import com.just.agentweb.AgentWeb
 import kotlinx.android.synthetic.main.activity_read.*
 

@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.guowei.diverse.R;
 import com.guowei.diverse.app.Constants;
-import com.guowei.diverse.model.NavigationModel;
+import com.guowei.diverse.model.learn.NavigationModel;
 import com.guowei.diverse.util.RandomUtils;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;

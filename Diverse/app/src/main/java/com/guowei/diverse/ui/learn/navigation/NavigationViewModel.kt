@@ -9,7 +9,7 @@ import com.guowei.diverse.R
 import com.guowei.diverse.api.Api
 import com.guowei.diverse.app.NetWorkManager
 import com.guowei.diverse.model.ApiResponse
-import com.guowei.diverse.model.NavigationModel
+import com.guowei.diverse.model.learn.NavigationModel
 import com.guowei.diverse.util.TransformerUtil.Companion.getDefaultTransformer
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable

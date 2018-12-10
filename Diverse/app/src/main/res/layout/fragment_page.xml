@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout >
+
+    <data>
+
+        <import type="com.guowei.diverse.ui.kaiyan.page.PageViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.guowei.diverse.ui.kaiyan.page.PageViewModel" />
+
+        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
+
+        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LineManagers" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:binding="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+            android:id="@+id/twinklingRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            binding:onLoadMoreCommand="@{viewModel.onLoadMoreCommand}"
+            binding:onRefreshCommand="@{viewModel.onRefreshCommand}"
+            binding:tr_head_height="80dp"
+            binding:tr_bottom_height="80dp">
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusableInTouchMode="true"
+                android:fillViewport="true"
+                >
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:descendantFocusability="blocksDescendants">
+                    <com.youth.banner.Banner
+                        android:id="@+id/banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        app:is_auto_play="true"
+                        android:visibility="gone"/>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/newest_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        binding:currentView="@{viewModel.recycler}"
+                        binding:layoutManager="@{LayoutManagers.linear()}"
+                        binding:lineManager="@{LineManagers.horizontal()}" />
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+
+        </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
+
+    </LinearLayout>
+</layout>

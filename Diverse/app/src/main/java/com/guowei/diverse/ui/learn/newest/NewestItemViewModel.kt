@@ -1,7 +1,7 @@
 package com.guowei.diverse.ui.learn.newest
 
 import android.os.Bundle
-import com.guowei.diverse.model.NewestModel
+import com.guowei.diverse.model.learn.NewestModel
 import com.guowei.diverse.ui.learn.read.ReadActivity
 
 import me.goldze.mvvmhabit.base.ItemViewModel

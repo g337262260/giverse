@@ -29,9 +29,11 @@ public interface Api {
     String APP_GANK_DOMAIN = "http://gank.io";
     String APP_DOUBAN_DOMAIN = "https://api.douban.com";
     String APP_WANANDROID = "http://www.wanandroid.com";
+    String APP_KAIYAN = "http://baobab.kaiyanapp.com";
 
     String GITHUB_DOMAIN_NAME = "github";
     String GANK_DOMAIN_NAME = "gank";
     String DOUBAN_DOMAIN_NAME = "douban";
     String WANANDROID = "wanandroid";
+    String KAIYANAPP = "kaiyanapp";
 }
