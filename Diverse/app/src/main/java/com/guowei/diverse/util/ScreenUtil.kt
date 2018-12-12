@@ -120,4 +120,5 @@ object ScreenUtil {
             resources.getDimensionPixelSize(resourceId)
         } else 0
     }
+
 }

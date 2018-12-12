@@ -65,7 +65,7 @@
                     android:layout_toRightOf="@id/item_search_pager_author"
                     android:gravity="end"
                     android:text="@{viewModel.entity.superChapterName}"
-                    android:textColor="@color/color5" />
+                    android:textColor="@color/color3" />
             </RelativeLayout>
 
             <TextView

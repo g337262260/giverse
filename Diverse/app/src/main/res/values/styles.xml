@@ -34,4 +34,13 @@
         <item name="android:windowEnterAnimation">@anim/top_to_bottom</item>
         <item name="android:windowExitAnimation">@anim/bottom_to_top</item>
     </style>
+
+
+    <style name="SplashStyle" parent="AppTheme">
+        <!--<item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowBackground">@mipmap/splash</item>
+    </style>
 </resources>

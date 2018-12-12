@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#88B7C9</color>
-    <color name="colorPrimaryDark">#88B7C9</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#88B7C9</color>
     <color name="textColorVice">#88B7C9</color>
 
     //----------------Theme---------------------------
-    <color name="color1">#EDF4FA</color>
-    <color name="color2">#C9DEEF</color>
-    <color name="color3">#88B7C9</color>
+    <color name="color1">#f7e5d7</color>
+    <color name="color2">#FDC499</color>
+    <color name="color3">#FF0149</color>
     <color name="color4">#4D669E</color>
     <color name="color5">#8B7991</color>
     <color name="color6">#E0BFC8</color>

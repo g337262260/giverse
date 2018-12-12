@@ -4,6 +4,8 @@ package com.guowei.diverse.ui
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.view.KeyEvent
+import android.widget.Toast
 import com.guowei.diverse.BR
 import com.guowei.diverse.R
 import com.guowei.diverse.databinding.ActivityMainBinding
@@ -18,6 +20,8 @@ import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener
 import java.util.*
 
 class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
+
+    private var mExitTime: Long = 0
 
     private var mFragments: ArrayList<Fragment>? = null
 
@@ -56,8 +60,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
 
     private fun initBottomTab() {
         val navigationController = binding.pagerBottomTab.material()
-                .addItem(R.drawable.ic_learn, titles[0])
-                .addItem(R.drawable.ic_kaiyan, titles[1])
+                .addItem(R.drawable.ic_learn, titles[0],ContextCompat.getColor(this, R.color.color3))
+                .addItem(R.drawable.ic_kaiyan, titles[1],ContextCompat.getColor(this, R.color.color3))
                 .addItem(R.mipmap.xiaoxi_select, titles[2])
                 .addItem(R.mipmap.wode_select, titles[3])
                 .setDefaultColor(ContextCompat.getColor(this, R.color.color5))
@@ -73,5 +77,24 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
 
             override fun onRepeat(index: Int) {}
         })
+    }
+
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        //判断用户是否点击了“返回键”
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            //与上次点击返回键时刻作差
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                //大于2000ms则认为是误操作，使用Toast进行提示
+                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show()
+                //并记录下本次点击“返回键”的时刻，以便下次进行判断
+                mExitTime = System.currentTimeMillis();
+            } else {
+                //小于2000ms则认为是用户确实希望退出程序-调用System.exit()方法进行退出
+                System.exit(0);
+            }
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 }
