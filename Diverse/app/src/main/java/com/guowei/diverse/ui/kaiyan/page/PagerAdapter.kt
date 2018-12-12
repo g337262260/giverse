@@ -3,6 +3,7 @@ package com.guowei.diverse.ui.kaiyan.page
 
 import ImageLoader
 import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.graphics.Typeface
 import android.support.v7.widget.RecyclerView
@@ -24,6 +25,7 @@ import com.guowei.diverse.model.eye.item.AutoPlayFollowCard
 import com.guowei.diverse.model.eye.item.BriefCard
 import com.guowei.diverse.model.eye.item.FollowCard
 import com.guowei.diverse.model.eye.item.VideoSmallCard
+import com.guowei.diverse.ui.kaiyan.video.VideoPlayActivity
 import com.guowei.diverse.util.TimeUtil
 import com.yjq.eyepetizer.bean.cards.item.DynamicInfoCard
 import com.yjq.eyepetizer.bean.cards.item.TextCard
@@ -405,16 +407,20 @@ class PagerAdapter(val mContext: Context) : RecyclerView.Adapter<CommonViewHolde
 
     //启动视频播放页面
     private fun startVideoActivity(videoId: String, videoTitle: String, videoFeedUrl: String, videoPlayUrl: String, videoBgUrl: String) {
-//        mContext.startActivity(
-//                Intent(mContext, VideoPlayActivity::class.java).apply {
-//                    putExtra("VIDEO_ID", videoId)
-//                    putExtra("VIDEO_BG", videoBgUrl)
-//                    putExtra("VIDEO_TITLE", videoTitle)
-//                    putExtra("VIDEO_FEED_URL", videoFeedUrl)
-//                    putExtra("VIDEO_PLAY_URL", videoPlayUrl)
-//                }
-//        )
-        KLog.d("启动视频播放页面")
+        mContext.startActivity(
+                Intent(mContext, VideoPlayActivity::class.java).apply {
+                    KLog.d("VIDEO",videoId)
+                    KLog.d("VIDEO",videoBgUrl)
+                    KLog.d("VIDEO",videoTitle)
+                    KLog.d("VIDEO",videoFeedUrl)
+                    KLog.d("VIDEO",videoPlayUrl)
+                    putExtra("VIDEO_ID", videoId)
+                    putExtra("VIDEO_BG", videoBgUrl)
+                    putExtra("VIDEO_TITLE", videoTitle)
+                    putExtra("VIDEO_FEED_URL", videoFeedUrl)
+                    putExtra("VIDEO_PLAY_URL", videoPlayUrl)
+                }
+        )
     }
 
 }

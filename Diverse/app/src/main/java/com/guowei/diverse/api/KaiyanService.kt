@@ -26,12 +26,15 @@ interface KaiyanService {
 
 
     //搜索热词
-    @GET("v3/queries/hot")
+    @Headers(RetrofitUrlManager.DOMAIN_NAME_HEADER + Api.KAIYANAPP)
+
+    @GET("api/v3/queries/hot")
     fun getSearchHotWord(): Observable<List<String>>
 
 
     //根据用户输入进行搜索首页,例： http://baobab.kaiyanapp.com/api/v3/search?query=关键字
-    @GET("v3/search")
+    @Headers(RetrofitUrlManager.DOMAIN_NAME_HEADER + Api.KAIYANAPP)
+    @GET("api/v3/search")
     fun searchByKeyWord(@Query("query") query: String): Observable<ColumnPage>
 
 
@@ -40,7 +43,7 @@ interface KaiyanService {
     fun searchMore(@Url nextPageUrl: String): Observable<ColumnPage>
 
     //获取【关注】下的tabList
-    @GET("v5/community/tab/list")
+    @GET("api/v5/community/tab/list")
     fun getFocusTabList(): Observable<Columns>
 
 
@@ -60,11 +63,13 @@ interface KaiyanService {
 
 
     //根据视频Id获取该视频的详细信息    例子：http://baobab.kaiyanapp.com/api/v2/video/127373
-    @GET("v2/video/{videoId}")
+    @Headers(RetrofitUrlManager.DOMAIN_NAME_HEADER + Api.KAIYANAPP)
+    @GET("api/v2/video/{videoId}")
     fun getVideoDetail(@Path("videoId") videoId: String): Observable<Data>
 
 
     //获取【视频播放页】一些额外信息，如该视频的相关推荐
-    @GET("v4/video/related")
+    @Headers(RetrofitUrlManager.DOMAIN_NAME_HEADER + Api.KAIYANAPP)
+    @GET("api/v4/video/related")
     fun getVideoRelated(@Query("id") videoId: String): Observable<ColumnPage>
 }

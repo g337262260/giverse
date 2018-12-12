@@ -2,7 +2,7 @@ package com.guowei.diverse.util
 
 import android.content.Context
 import android.util.Log
-import com.guowei.diverse.app.DiverseApplication
+import me.goldze.mvvmhabit.utils.Utils
 
 
 object ScreenUtil {
@@ -28,7 +28,7 @@ object ScreenUtil {
     val displayWidth: Int
         get() {
             if (screenWidth == 0) {
-                GetInfo(DiverseApplication.INSTANCE)
+                GetInfo(Utils.getContext())
             }
             return screenWidth
         }
@@ -36,13 +36,13 @@ object ScreenUtil {
     val displayHeight: Int
         get() {
             if (screenHeight == 0) {
-                GetInfo(DiverseApplication.INSTANCE)
+                GetInfo(Utils.getContext())
             }
             return screenHeight
         }
 
     init {
-        init(DiverseApplication.INSTANCE)
+        init(Utils.getContext())
     }
 
     fun dip2px(dipValue: Float): Int {

@@ -41,7 +41,7 @@ object ImageLoader {
         GlideApp.with(context)
                 .load(imageUrl)
                 .transition(DrawableTransitionOptions.withCrossFade())  //渐入动画效果
-                .transform(CenterCropRoundCornerTransform(ScreenUtil.dip2px(corner.toFloat()), true))      //centerCrop +  cornerCrop 效果
+//                .transform(CenterCropRoundCornerTransform(ScreenUtil.dip2px(corner.toFloat()), true))      //centerCrop +  cornerCrop 效果
                 .placeholder(placeHolderId)                             //占位图片
                 .into(imageView)
 

@@ -7,8 +7,8 @@ import android.support.v4.content.ContextCompat
 import com.guowei.diverse.BR
 import com.guowei.diverse.R
 import com.guowei.diverse.databinding.ActivityMainBinding
-import com.guowei.diverse.ui.learn.LearnFragment
 import com.guowei.diverse.ui.kaiyan.KaiyanFragment
+import com.guowei.diverse.ui.learn.LearnFragment
 import com.guowei.diverse.ui.news.NewsFragment
 import com.guowei.diverse.ui.other.OtherFragment
 import kotlinx.android.synthetic.main.activity_read.*
@@ -56,8 +56,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
 
     private fun initBottomTab() {
         val navigationController = binding.pagerBottomTab.material()
-                .addItem(R.mipmap.yingyong, titles[0],ContextCompat.getColor(this, R.color.color3))
-                .addItem(R.mipmap.huanzhe, titles[1])
+                .addItem(R.drawable.ic_learn, titles[0])
+                .addItem(R.drawable.ic_kaiyan, titles[1])
                 .addItem(R.mipmap.xiaoxi_select, titles[2])
                 .addItem(R.mipmap.wode_select, titles[3])
                 .setDefaultColor(ContextCompat.getColor(this, R.color.color5))

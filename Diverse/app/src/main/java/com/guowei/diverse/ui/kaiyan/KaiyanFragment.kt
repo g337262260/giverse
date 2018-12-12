@@ -13,7 +13,10 @@ import com.guowei.diverse.R
 import com.guowei.diverse.databinding.FragmentMediaBinding
 import com.guowei.diverse.model.eye.Columns
 import com.guowei.diverse.ui.kaiyan.page.PageFragment
+import com.guowei.diverse.ui.kaiyan.search.SearchFragment
+import kotlinx.android.synthetic.main.fragment_media.*
 import me.goldze.mvvmhabit.base.BaseFragment
+import me.goldze.mvvmhabit.utils.KLog
 
 
 class KaiyanFragment : BaseFragment<FragmentMediaBinding,KaiyanViewModel>() {
@@ -34,6 +37,8 @@ class KaiyanFragment : BaseFragment<FragmentMediaBinding,KaiyanViewModel>() {
             mData = it!!
             initTabLayout()
         })
+
+        kaiyan_search.setOnClickListener {  SearchFragment().show(childFragmentManager, "searchFragment") }
     }
 
     private fun initTabLayout() {
@@ -43,6 +48,7 @@ class KaiyanFragment : BaseFragment<FragmentMediaBinding,KaiyanViewModel>() {
             adapter = object :FragmentPagerAdapter(childFragmentManager){
                 override fun getItem(position: Int): Fragment {
                     val apiUrl = tabList[position].apiUrl
+                    KLog.d("apiUrl",apiUrl)
                     return PageFragment.newInstance(apiUrl)
                 }
 

@@ -1,22 +1,18 @@
 package com.guowei.diverse.ui.kaiyan.page
 
-import android.annotation.SuppressLint
 import android.app.Application
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableBoolean
-import android.support.v7.widget.RecyclerView
 import com.guowei.diverse.api.Api
-import com.guowei.diverse.app.Constant
 import com.guowei.diverse.app.NetWorkManager
-import com.guowei.diverse.app.ViewTypeEnum
 import com.guowei.diverse.model.eye.ColumnPage
-import com.guowei.diverse.model.eye.Item
 import com.guowei.diverse.util.TransformerUtil
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import me.goldze.mvvmhabit.base.BaseViewModel
 import me.goldze.mvvmhabit.binding.command.BindingAction
 import me.goldze.mvvmhabit.binding.command.BindingCommand
-import me.goldze.mvvmhabit.binding.command.BindingConsumer
 import me.goldze.mvvmhabit.utils.ToastUtils
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager
 
@@ -26,22 +22,19 @@ import me.jessyan.retrofiturlmanager.RetrofitUrlManager
  */
 class PageViewModel(application: Application) : BaseViewModel(application) {
 
-    private lateinit var url :String
-    private lateinit var next_url :String
-    @SuppressLint("StaticFieldLeak")
-    lateinit var recyclerView :RecyclerView
-    private var mItemList: List<Item>? = null
-    private var mAdapter: PagerAdapter? = null
+    private  var url : String? = null
+    private  var next_url : String? = null
+
+    var pages = MutableLiveData<ColumnPage>()
 
     var uc = UIChangeObservable()
 
     //下拉刷新
     var onRefreshCommand = BindingCommand<BindingAction>(BindingAction {
-
-        requestNetWork(url)})
+        requestNetWork(url!!)})
     //上拉加载
     var onLoadMoreCommand = BindingCommand<BindingAction>(BindingAction {
-        requestNetWork(next_url)
+        requestNetWork(next_url!!)
     })
 
     inner class UIChangeObservable {
@@ -52,6 +45,7 @@ class PageViewModel(application: Application) : BaseViewModel(application) {
     }
 
     fun requestNetWork(url:String) {
+        this.url = url
         RetrofitUrlManager.getInstance().putDomain(Api.KAIYANAPP, Api.APP_KAIYAN)
         NetWorkManager
                 .getInstance()
@@ -60,10 +54,7 @@ class PageViewModel(application: Application) : BaseViewModel(application) {
                 .compose(TransformerUtil.getDefaultTransformer())
                 .subscribe(object : Observer<ColumnPage> {
                     override fun onNext(t: ColumnPage) {
-                        mItemList = t.itemList.filter {
-                            Constant.ViewTypeList.contains(ViewTypeEnum.getViewTypeEnum(it.type))
-                        }
-                        mAdapter?.setData(mItemList as ArrayList<Item>, false)
+                        pages.postValue(t)
                         next_url = t.nextPageUrl
                     }
 
@@ -87,8 +78,7 @@ class PageViewModel(application: Application) : BaseViewModel(application) {
                 })
     }
 
-    var recycler: BindingCommand<RecyclerView> = BindingCommand(BindingConsumer {
-        recyclerView -> this@PageViewModel.recyclerView = recyclerView
-        recyclerView.adapter = mAdapter
-    })
+    fun getPage(): LiveData<ColumnPage> {
+        return this.pages
+    }
 }

@@ -50,7 +50,6 @@
                         android:id="@+id/newest_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        binding:currentView="@{viewModel.recycler}"
                         binding:layoutManager="@{LayoutManagers.linear()}"
                         binding:lineManager="@{LineManagers.horizontal()}" />
                 </LinearLayout>

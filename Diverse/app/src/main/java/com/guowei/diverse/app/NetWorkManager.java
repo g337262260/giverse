@@ -34,7 +34,9 @@ import me.goldze.mvvmhabit.utils.Utils;
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import okhttp3.Cache;
 import okhttp3.ConnectionPool;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.internal.platform.Platform;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -88,8 +90,17 @@ public class NetWorkManager {
                 .connectTimeout(5, TimeUnit.SECONDS)
                 .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
                 .cookieJar(new CookieJarImpl(new PersistentCookieStore(mContext)))
-//                .cache(cache)
+                .cache(cache)
                 .addInterceptor(new CacheInterceptor(mContext))
+                .addInterceptor(chain ->{
+                    Request originRequest = chain.request();
+                    HttpUrl originUrl = originRequest.url();
+                    HttpUrl newUrl = originUrl.newBuilder()
+                            .addQueryParameter("udid", "435865baacfc49499632ea13c5a78f944c2f28aa")
+                            .build();
+                    Request newRequest = originRequest.newBuilder().url(newUrl).build();
+                    return chain.proceed(newRequest);
+                })
                 .addInterceptor(new LoggingInterceptor
                         .Builder()//构建者模式
                         //是否开启日志打印

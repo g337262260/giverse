@@ -1,0 +1,272 @@
+package com.guowei.diverse.ui.kaiyan.search
+
+
+import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.*
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
+import com.guowei.diverse.R
+import com.guowei.diverse.api.Api
+import com.guowei.diverse.app.Constant
+import com.guowei.diverse.app.NetWorkManager
+import com.guowei.diverse.app.ViewTypeEnum
+import com.guowei.diverse.app.hideKeyBoard
+import com.guowei.diverse.model.eye.Item
+import com.guowei.diverse.ui.kaiyan.page.PagerAdapter
+import com.guowei.diverse.util.TransformerUtil
+import com.trello.rxlifecycle2.components.support.RxDialogFragment
+import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.android.synthetic.main.search_help.*
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager
+
+
+/**
+ * A simple [Fragment] subclass.
+ *
+ */
+class SearchFragment : RxDialogFragment() {
+
+
+    //TAG
+    private val TAG = "SearchFragment"
+
+
+    //data
+    private var mItemList: List<Item>? = null
+    private var nextPaeUrl: String? = null
+    private var mHotWordList: ArrayList<String>? = null
+
+
+    //state
+    private var enableLoadMore = true  //是否允许加载更多标志位
+
+    //UI status  根据状态显示不同的界面
+    private var state: UIState = UIState.SHOW_SEARCH_HELP
+
+    enum class UIState {
+        SHOW_SEARCH_HELP,           //显示搜索帮助列表，包括搜索热词、搜索历史
+        SHOW_SEARCH_RESULT,         //显示搜索结果
+        SHOW_SEARCH_NET_ERROR,      //显示网络错误提示
+        SHOW_SEARCH_EMPTY_RESULT;   //搜索不到相应内容
+    }
+
+
+    //other
+    private lateinit var mHelpAdapter: SearchHelpAdapter
+    private lateinit var mResultAdapter: PagerAdapter
+
+    /**
+     * **************************************************  界面状态改变的处理 *********************************************
+     */
+
+
+    private fun setUIState(newState: UIState) {
+        state = newState
+
+        searchHelp.visibility = View.GONE
+        searchError.visibility = View.GONE
+        searchEmpty.visibility = View.GONE
+        searchResult.visibility = View.GONE
+
+        when (state) {
+            UIState.SHOW_SEARCH_HELP -> searchHelp.visibility = View.VISIBLE
+            UIState.SHOW_SEARCH_RESULT -> searchResult.visibility = View.VISIBLE
+            UIState.SHOW_SEARCH_NET_ERROR -> searchError.visibility = View.VISIBLE
+            UIState.SHOW_SEARCH_EMPTY_RESULT -> searchEmpty.visibility = View.VISIBLE
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mHelpAdapter = SearchHelpAdapter(context!!)
+        mResultAdapter = PagerAdapter(context!!)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        //Dialog Window调整
+        with(dialog.window) {
+            requestFeature(Window.FEATURE_NO_TITLE)                              //去掉Dialog自带的顶部标题栏
+            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            decorView.setPadding(0, 0, 0, 0)              //去掉padding，让dialog等同于屏幕宽度
+            attributes = attributes.apply {
+                windowAnimations = R.style.animSearchFragment                    //window进入退出动画效果
+                width = WindowManager.LayoutParams.MATCH_PARENT                  //window的宽
+                height = WindowManager.LayoutParams.MATCH_PARENT                 //window的高
+            }
+        }
+        return inflater.inflate(R.layout.fragment_search, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        tvCancelSearch.setOnClickListener { dismiss() }  //退出搜索
+
+
+        //搜索框初始化
+        with(etInput) {
+            //触发搜索功能
+            setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    searchByKeyWord(this.text.toString().trim())            //执行搜索
+                    return@OnEditorActionListener true
+                }
+                false
+            })
+
+            //控制清空图标的显隐
+            addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                }
+
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                }
+
+                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+                    //根据输入框是否有内容 ->决定是否显示清空图标
+                    ivActionCancel.visibility = if (s.isNotEmpty()) View.VISIBLE else View.GONE
+
+                    //一旦输入框没有内容 -> 仅显示搜索帮助列表
+                    if (s.isEmpty()) setUIState(UIState.SHOW_SEARCH_HELP)
+
+                }
+
+            })
+
+            //清空图标点击事件
+            ivActionCancel.setOnClickListener { etInput.setText("") }
+
+        }
+
+
+        //搜索结果列表初始化
+        with(searchResult) {
+            layoutManager = LinearLayoutManager(context)
+            adapter = mResultAdapter
+
+            //底部加载更多
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                private var isSlideUpward = false
+                override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        val lastItemPosition = (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+                        val itemCount = layoutManager.itemCount
+                        if (itemCount - 1 == lastItemPosition && isSlideUpward && enableLoadMore) {
+                            searchMore()
+                        }
+                    }
+
+
+                }
+
+                override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                    isSlideUpward = dy > 0
+
+                }
+            })
+        }
+
+
+        //搜索帮助列表初始化 （包括【搜索历史】【搜索热词】 ）
+        with(searchHelpRecyclerView) {
+            adapter = mHelpAdapter.apply {
+                onItemClick = { position ->
+                    run {
+                        //搜索帮助列表Item项点击事件
+                        val hotWord = mHotWordList!![position]
+                        etInput.setText(hotWord)
+                        etInput.setSelection(hotWord.length)
+                        searchByKeyWord(hotWord)
+                    }
+                }
+            }
+
+            layoutManager = LinearLayoutManager(context)
+            getSearchKeyHotWord()  //获取搜索热词
+        }
+
+
+        setUIState(UIState.SHOW_SEARCH_HELP)   //一开始显示搜索帮助列表
+    }
+    //根据用户输入搜索相应内容
+    @SuppressLint("CheckResult")
+    private fun searchByKeyWord(query: String) {
+        setUIState(UIState.SHOW_SEARCH_RESULT)
+        hideKeyBoard(etInput)
+        NetWorkManager
+                .getInstance()
+                .kaiyanService
+                .searchByKeyWord(query)
+                .compose(TransformerUtil.getDefaultTransformer())
+                .subscribe { it ->
+                    //筛选数据
+                    mItemList = it.itemList.filter {
+                        Constant.ViewTypeList.contains(ViewTypeEnum.getViewTypeEnum(it.type))
+                    }
+
+                    //检查搜索结果是否为空
+                    if (mItemList!!.isEmpty())
+                        setUIState(UIState.SHOW_SEARCH_EMPTY_RESULT)
+
+                    //展示数据
+                    mResultAdapter.setData(mItemList as ArrayList<Item>, loadMore = false)
+
+                    //加载下一页所需API接口
+                    nextPaeUrl = it.nextPageUrl
+                }
+
+    }
+
+    //获取搜索热词数据
+    @SuppressLint("CheckResult")
+    private fun getSearchKeyHotWord() {
+        RetrofitUrlManager.getInstance().putDomain(Api.KAIYANAPP, Api.APP_KAIYAN)
+        NetWorkManager
+                .getInstance()
+                .kaiyanService
+                .getSearchHotWord()
+                .compose(TransformerUtil.getDefaultTransformer())
+                .subscribe {
+                    mHotWordList = it as ArrayList<String>
+                    mHelpAdapter.setData(mHotWordList)
+                }
+    }
+
+    //在已有的搜索结果上搜索更多
+    @SuppressLint("CheckResult")
+    private fun searchMore() {
+
+        if (nextPaeUrl == null) {
+            mResultAdapter.setNoMore(true)
+            return
+        }
+        enableLoadMore = false
+        NetWorkManager
+                .getInstance()
+                .kaiyanService
+                .searchMore(nextPaeUrl!!)
+                .compose(TransformerUtil.getDefaultTransformer())
+                .subscribe { it ->
+                    //筛选数据
+                    mItemList = it.itemList.filter {
+                        Constant.ViewTypeList.contains(ViewTypeEnum.getViewTypeEnum(it.type))
+                    }
+
+                    //展示数据
+                    mResultAdapter.setData(mItemList as ArrayList<Item>, loadMore = true)
+
+                    //加载下一页所需API接口
+                    nextPaeUrl = it.nextPageUrl
+                }
+    }
+
+}

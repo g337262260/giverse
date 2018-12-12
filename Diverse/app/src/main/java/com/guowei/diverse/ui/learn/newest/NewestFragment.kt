@@ -15,6 +15,7 @@ import com.guowei.diverse.model.learn.NewestModel
 import com.guowei.diverse.ui.learn.read.ReadActivity
 import com.guowei.diverse.util.GlideImageLoader
 import com.youth.banner.BannerConfig
+import kotlinx.android.synthetic.main.fragment_newest.*
 import me.goldze.mvvmhabit.base.BaseFragment
 import java.util.*
 
@@ -33,10 +34,9 @@ class NewestFragment : BaseFragment<FragmentNewestBinding, NewestViewModel>() {
     }
 
     override fun initData() {
-
-        binding.banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE)
-        binding.banner.setImageLoader(GlideImageLoader())
-        binding.banner.setOnBannerListener({ position ->
+        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE)
+        banner.setImageLoader(GlideImageLoader())
+        banner.setOnBannerListener { position ->
             val mBundle = Bundle()
             val entity = NewestModel.DatasBean()
             listBanner?.let {
@@ -45,7 +45,7 @@ class NewestFragment : BaseFragment<FragmentNewestBinding, NewestViewModel>() {
             }
             mBundle.putParcelable("entity", entity)
             viewModel.startActivity(ReadActivity::class.java,mBundle)
-        })
+        }
         //请求网络数据
         viewModel.requestNetWork()
         viewModel.requestBanner()
@@ -68,12 +68,12 @@ class NewestFragment : BaseFragment<FragmentNewestBinding, NewestViewModel>() {
                 banner.title?.let { titles.add(it) }
                 banner.imagePath?.let { urls.add(it) }
             }
-            binding.banner.visibility = View.VISIBLE
-            binding.banner.setBannerTitles(titles)
-            binding.banner.setImages(urls)
-            binding.banner.start()
+            banner.visibility = View.VISIBLE
+            banner.setBannerTitles(titles)
+            banner.setImages(urls)
+            banner.start()
         } else {
-            binding.banner.visibility = View.GONE
+            banner.visibility = View.GONE
         }
     }
     override fun initViewObservable() {
@@ -95,11 +95,11 @@ class NewestFragment : BaseFragment<FragmentNewestBinding, NewestViewModel>() {
 
     override fun onStart() {
         super.onStart()
-        binding.banner.startAutoPlay()
+        banner.startAutoPlay()
     }
 
     override fun onStop() {
         super.onStop()
-        binding.banner.stopAutoPlay()
+        banner.stopAutoPlay()
     }
 }
