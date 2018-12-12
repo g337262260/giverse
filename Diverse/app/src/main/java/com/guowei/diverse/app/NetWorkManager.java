@@ -101,6 +101,7 @@ public class NetWorkManager {
                     Request newRequest = originRequest.newBuilder().url(newUrl).build();
                     return chain.proceed(newRequest);
                 })
+                .addInterceptor(new CacheInterceptor(mContext))
                 .addInterceptor(new LoggingInterceptor
                         .Builder()//构建者模式
                         //是否开启日志打印

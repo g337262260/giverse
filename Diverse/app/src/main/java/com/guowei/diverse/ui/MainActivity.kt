@@ -11,7 +11,7 @@ import com.guowei.diverse.ui.kaiyan.KaiyanFragment
 import com.guowei.diverse.ui.learn.LearnFragment
 import com.guowei.diverse.ui.news.NewsFragment
 import com.guowei.diverse.ui.other.OtherFragment
-import kotlinx.android.synthetic.main.activity_read.*
+import kotlinx.android.synthetic.main.title_bar.*
 import me.goldze.mvvmhabit.base.BaseActivity
 import me.goldze.mvvmhabit.base.BaseViewModel
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener

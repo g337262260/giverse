@@ -26,8 +26,8 @@ interface KaiyanService {
 
 
     //搜索热词
-    @Headers(RetrofitUrlManager.DOMAIN_NAME_HEADER + Api.KAIYANAPP)
 
+    @Headers(RetrofitUrlManager.DOMAIN_NAME_HEADER + Api.KAIYANAPP)
     @GET("api/v3/queries/hot")
     fun getSearchHotWord(): Observable<List<String>>
 
@@ -43,6 +43,7 @@ interface KaiyanService {
     fun searchMore(@Url nextPageUrl: String): Observable<ColumnPage>
 
     //获取【关注】下的tabList
+
     @GET("api/v5/community/tab/list")
     fun getFocusTabList(): Observable<Columns>
 
@@ -63,6 +64,7 @@ interface KaiyanService {
 
 
     //根据视频Id获取该视频的详细信息    例子：http://baobab.kaiyanapp.com/api/v2/video/127373
+
     @Headers(RetrofitUrlManager.DOMAIN_NAME_HEADER + Api.KAIYANAPP)
     @GET("api/v2/video/{videoId}")
     fun getVideoDetail(@Path("videoId") videoId: String): Observable<Data>

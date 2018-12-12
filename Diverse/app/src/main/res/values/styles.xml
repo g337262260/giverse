@@ -34,5 +34,4 @@
         <item name="android:windowEnterAnimation">@anim/top_to_bottom</item>
         <item name="android:windowExitAnimation">@anim/bottom_to_top</item>
     </style>
-
 </resources>

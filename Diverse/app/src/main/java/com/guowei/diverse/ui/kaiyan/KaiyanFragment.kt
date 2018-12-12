@@ -37,7 +37,6 @@ class KaiyanFragment : BaseFragment<FragmentMediaBinding,KaiyanViewModel>() {
             mData = it!!
             initTabLayout()
         })
-
         kaiyan_search.setOnClickListener {  SearchFragment().show(childFragmentManager, "searchFragment") }
     }
 
