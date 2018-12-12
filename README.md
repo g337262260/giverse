@@ -12,7 +12,7 @@ A Diversity App about news ,movies and other interesting things
 # Thanks
 - [Wanandroid](http://www.wanandroid.com/blog/show/2)
 - [低仿开眼](https://github.com/1136535305/Eyepetizer)
-- [头条](https://github.com/iMeiji/Toutiao.git)
+- [精仿今日头条](https://github.com/chaychan/TouTiao)
 ##### 本项目参考了以上的app中的接口和部分布局，在此表示感谢
 
 # 项目架构
