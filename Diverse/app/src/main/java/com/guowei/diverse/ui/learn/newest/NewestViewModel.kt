@@ -33,6 +33,7 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
 class NewestViewModel(application: Application) : BaseViewModel(application) {
 
     private var pageIndex = 0
+    private var loadMore: Boolean = false
 
     var banners = MutableLiveData<List<BannerModel>>()
 
@@ -47,10 +48,12 @@ class NewestViewModel(application: Application) : BaseViewModel(application) {
 
     //下拉刷新
     var onRefreshCommand = BindingCommand<BindingAction>(BindingAction {
+        loadMore = false
         pageIndex = 0
         requestNetWork()})
     //上拉加载
     var onLoadMoreCommand = BindingCommand<BindingAction>(BindingAction {
+        loadMore = true
         requestNetWork()
     })
 
@@ -73,7 +76,6 @@ class NewestViewModel(application: Application) : BaseViewModel(application) {
                 .compose(getDefaultTransformer())
                 .subscribe(object : Observer<ApiResponse<NewestModel>> {
                     override fun onNext(t: ApiResponse<NewestModel>) {
-//                        uc.finishLoadmore.set(!uc.finishRefreshing.get())
                         if (pageIndex==0){
                             observableList.clear()
                         }
@@ -89,18 +91,17 @@ class NewestViewModel(application: Application) : BaseViewModel(application) {
                         //关闭对话框
                         dismissDialog()
                         //请求刷新完成收回
-                        uc.finishRefreshing.set(!uc.finishRefreshing.get())
+                        finishLoad()
                         ToastUtils.showShort(e.message)
                         e.printStackTrace()
                     }
 
                     override fun onSubscribe(d: Disposable) {
-//                        ToastUtils.showShort("下拉刷新")
                     }
 
                     override fun onComplete() {
                         dismissDialog()
-                        uc.finishRefreshing.set(!uc.finishRefreshing.get())
+                        finishLoad()
                     }
                 })
     }
@@ -135,6 +136,11 @@ class NewestViewModel(application: Application) : BaseViewModel(application) {
     fun getBanner(): LiveData<List<BannerModel>> {
         return this.banners
     }
-
-
+    fun finishLoad(){
+        if (loadMore) {
+            uc.finishLoadmore.set(!uc.finishLoadmore.get())
+        } else {
+            uc.finishRefreshing.set(!uc.finishRefreshing.get())
+        }
+    }
 }

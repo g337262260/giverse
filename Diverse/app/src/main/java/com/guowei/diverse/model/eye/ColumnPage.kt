@@ -24,6 +24,11 @@ data class Item(
         var adIndex: Int //-1
 )
 
+data class PageModel(
+        val loadmore:Boolean,
+        val data:ColumnPage
+)
+
 
 
 

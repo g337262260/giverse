@@ -17,6 +17,7 @@ import io.reactivex.disposables.Disposable
 import me.goldze.mvvmhabit.base.BaseViewModel
 import me.goldze.mvvmhabit.binding.command.BindingAction
 import me.goldze.mvvmhabit.binding.command.BindingCommand
+import me.goldze.mvvmhabit.utils.KLog
 import me.goldze.mvvmhabit.utils.ToastUtils
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager
 import me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter
@@ -28,9 +29,9 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
  */
 class ArticleViewModel(application: Application) : BaseViewModel(application) {
 
-    private var pageIndex = 0
+    private var pageIndex = 1
     private var aid = 0
-
+    private var loadMore: Boolean = false
     var uc = UIChangeObservable()
 
     //给RecyclerView添加ObservableList
@@ -42,10 +43,12 @@ class ArticleViewModel(application: Application) : BaseViewModel(application) {
 
     //下拉刷新
     var onRefreshCommand = BindingCommand<BindingAction>(BindingAction {
+        loadMore = false
         pageIndex = 0
         requestNetWork(this.aid)})
     //上拉加载
     var onLoadMoreCommand = BindingCommand<BindingAction>(BindingAction {
+        loadMore = true
         requestNetWork(this.aid)
     })
 
@@ -69,8 +72,9 @@ class ArticleViewModel(application: Application) : BaseViewModel(application) {
                 .compose(getDefaultTransformer())
                 .subscribe(object : Observer<ApiResponse<NewestModel>> {
                     override fun onNext(t: ApiResponse<NewestModel>) {
-//                        uc.finishLoadmore.set(!uc.finishRefreshing.get())
-                        if (pageIndex==0){
+                        KLog.d("pageIndex",pageIndex)
+                        KLog.d("curPage",t.data.curPage)
+                        if (!loadMore){
                             observableList.clear()
                         }
                         for (item in t.data.datas) {
@@ -78,14 +82,14 @@ class ArticleViewModel(application: Application) : BaseViewModel(application) {
                             //双向绑定动态添加Item
                             observableList.add(itemViewModel)
                         }
-                        pageIndex = t.data.curPage
+                        pageIndex +=1
                     }
 
                     override fun onError(e: Throwable) {
                         //关闭对话框
                         dismissDialog()
                         //请求刷新完成收回
-                        uc.finishRefreshing.set(!uc.finishRefreshing.get())
+                        finishLoad()
                         ToastUtils.showShort(e.message)
                         e.printStackTrace()
                     }
@@ -96,9 +100,15 @@ class ArticleViewModel(application: Application) : BaseViewModel(application) {
 
                     override fun onComplete() {
                         dismissDialog()
-                        uc.finishRefreshing.set(!uc.finishRefreshing.get())
+                        finishLoad()
                     }
                 })
     }
-
+    fun finishLoad(){
+        if (loadMore) {
+            uc.finishLoadmore.set(!uc.finishLoadmore.get())
+        } else {
+            uc.finishRefreshing.set(!uc.finishRefreshing.get())
+        }
+    }
 }

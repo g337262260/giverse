@@ -25,7 +25,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
 
     private var mFragments: ArrayList<Fragment>? = null
 
-    private val titles = arrayOf("学习","开眼","视频","其他")
+    private val titles = arrayOf("学习","开眼","头条","其他")
 
     override fun initVariableId(): Int {
         return BR.viewModel
@@ -62,7 +62,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
         val navigationController = binding.pagerBottomTab.material()
                 .addItem(R.drawable.ic_learn, titles[0],ContextCompat.getColor(this, R.color.color3))
                 .addItem(R.drawable.ic_kaiyan, titles[1],ContextCompat.getColor(this, R.color.color3))
-                .addItem(R.mipmap.xiaoxi_select, titles[2])
+                .addItem(R.drawable.ic_toutiao, titles[2],ContextCompat.getColor(this, R.color.color3))
                 .addItem(R.mipmap.wode_select, titles[3])
                 .setDefaultColor(ContextCompat.getColor(this, R.color.color5))
                 .build()

@@ -23,7 +23,6 @@ class PageFragment : BaseFragment<FragmentPageBinding,PageViewModel>() {
 
     private var firstPageUrl: String? = null
     private var mItemList: List<Item>? = null
-    private var loadMore:Boolean = false
 
     //other
     private lateinit var mAdapter: PagerAdapter
@@ -42,18 +41,19 @@ class PageFragment : BaseFragment<FragmentPageBinding,PageViewModel>() {
     }
 
     override fun initData() {
-
         mAdapter = PagerAdapter(context!!)
         binding.newestRecycler.adapter = mAdapter
 
         firstPageUrl = arguments?.getString("API_URL")
-        firstPageUrl?.let { viewModel.requestNetWork(it) }
+        firstPageUrl?.let { viewModel.requestNetWork(it,false) }
         viewModel.getPage().observe(this, Observer { it ->
-            mItemList = it?.itemList?.filter {
+            mItemList = it?.data?.itemList?.filter {
                 Constant.ViewTypeList.contains(ViewTypeEnum.getViewTypeEnum(it.type))
             }
-            mAdapter.setData(mItemList as ArrayList<Item>, loadMore)
+            mAdapter.setData(mItemList as ArrayList<Item>, it!!.loadmore)
         })
+
+
     }
 
     override fun initViewObservable() {
@@ -62,7 +62,6 @@ class PageFragment : BaseFragment<FragmentPageBinding,PageViewModel>() {
             override fun onPropertyChanged(observable: Observable, i: Int) {
                 //结束刷新
                 binding.twinklingRefreshLayout.finishRefreshing()
-                loadMore = false
             }
         })
         //监听上拉加载完成
@@ -70,9 +69,9 @@ class PageFragment : BaseFragment<FragmentPageBinding,PageViewModel>() {
             override fun onPropertyChanged(observable: Observable, i: Int) {
                 //结束刷新
                 binding.twinklingRefreshLayout.finishLoadmore()
-                loadMore = true
             }
         })
     }
 
 }
+

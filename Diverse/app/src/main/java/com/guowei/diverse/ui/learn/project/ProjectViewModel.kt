@@ -1,5 +1,6 @@
 package com.guowei.diverse.ui.learn.project
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
@@ -35,7 +36,9 @@ class ProjectViewModel(application: Application) : BaseViewModel(application) {
     private var cid = 0
     lateinit var pros: List<ProjectModel>
 
+    @SuppressLint("StaticFieldLeak")
     lateinit var tfl :TagFlowLayout
+    private var loadMore: Boolean = false
 
     var uc = UIChangeObservable()
 
@@ -48,12 +51,14 @@ class ProjectViewModel(application: Application) : BaseViewModel(application) {
 
     //下拉刷新
     var onRefreshCommand = BindingCommand<BindingAction>(BindingAction {
+        loadMore = false
         pageIndex = 0
         requestNetWork(this.cid)
         requestProject()
     })
     //上拉加载
     var onLoadMoreCommand = BindingCommand<BindingAction>(BindingAction {
+        loadMore =true
         requestNetWork(this.cid)
     })
 
@@ -92,7 +97,7 @@ class ProjectViewModel(application: Application) : BaseViewModel(application) {
                         //关闭对话框
                         dismissDialog()
                         //请求刷新完成收回
-                        uc.finishRefreshing.set(!uc.finishRefreshing.get())
+                        finishLoad()
                         ToastUtils.showShort(e.message)
                         e.printStackTrace()
                     }
@@ -103,7 +108,7 @@ class ProjectViewModel(application: Application) : BaseViewModel(application) {
 
                     override fun onComplete() {
                         dismissDialog()
-                        uc.finishRefreshing.set(!uc.finishRefreshing.get())
+                        finishLoad()
                     }
                 })
     }
@@ -137,9 +142,17 @@ class ProjectViewModel(application: Application) : BaseViewModel(application) {
     }
     var tagFlowLayout: BindingCommand<TagFlowLayout> = BindingCommand(BindingConsumer {
         tfl -> this@ProjectViewModel.tfl = tfl
-        tfl.setOnTagClickListener({ _, pos, _ ->
+        tfl.setOnTagClickListener { _, pos, _ ->
             requestNetWork(pros[pos].id)
             true
-        })
+        }
     })
+
+    fun finishLoad(){
+        if (loadMore) {
+            uc.finishLoadmore.set(!uc.finishLoadmore.get())
+        } else {
+            uc.finishRefreshing.set(!uc.finishRefreshing.get())
+        }
+    }
 }

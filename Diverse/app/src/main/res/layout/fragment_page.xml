@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout >
+<layout>
 
     <data>
 
@@ -16,7 +16,6 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:binding="http://schemas.android.com/apk/res-auto"
-        xmlns:app="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -27,34 +26,15 @@
             android:layout_height="match_parent"
             binding:onLoadMoreCommand="@{viewModel.onLoadMoreCommand}"
             binding:onRefreshCommand="@{viewModel.onRefreshCommand}"
-            binding:tr_head_height="80dp"
-            binding:tr_bottom_height="80dp">
-            <android.support.v4.widget.NestedScrollView
+            binding:tr_bottom_height="80dp"
+            binding:tr_head_height="80dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/newest_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:focusableInTouchMode="true"
-                android:fillViewport="true"
-                >
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:descendantFocusability="blocksDescendants">
-                    <com.youth.banner.Banner
-                        android:id="@+id/banner"
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        app:is_auto_play="true"
-                        android:visibility="gone"/>
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/newest_recycler"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        binding:layoutManager="@{LayoutManagers.linear()}"
-                        binding:lineManager="@{LineManagers.horizontal()}" />
-                </LinearLayout>
-            </android.support.v4.widget.NestedScrollView>
-
+                binding:layoutManager="@{LayoutManagers.linear()}"
+                binding:lineManager="@{LineManagers.horizontal()}" />
 
         </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
 

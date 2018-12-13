@@ -30,7 +30,7 @@ class TreeChildViewModel(application: Application) : BaseViewModel(application) 
 
     private var pageIndex = 0
     private var cid = 0
-
+    private var loadMore: Boolean = false
     var uc = UIChangeObservable()
 
     //给RecyclerView添加ObservableList
@@ -42,10 +42,12 @@ class TreeChildViewModel(application: Application) : BaseViewModel(application) 
 
     //下拉刷新
     var onRefreshCommand = BindingCommand<BindingAction>(BindingAction {
+        loadMore = false
         pageIndex = 0
         requestNetWork(this.cid)})
     //上拉加载
     var onLoadMoreCommand = BindingCommand<BindingAction>(BindingAction {
+        loadMore = true
         requestNetWork(this.cid)
     })
 
@@ -69,7 +71,6 @@ class TreeChildViewModel(application: Application) : BaseViewModel(application) 
                 .compose(getDefaultTransformer())
                 .subscribe(object : Observer<ApiResponse<NewestModel>> {
                     override fun onNext(t: ApiResponse<NewestModel>) {
-//                        uc.finishLoadmore.set(!uc.finishRefreshing.get())
                         if (pageIndex==0){
                             observableList.clear()
                         }
@@ -85,20 +86,25 @@ class TreeChildViewModel(application: Application) : BaseViewModel(application) 
                         //关闭对话框
                         dismissDialog()
                         //请求刷新完成收回
-                        uc.finishRefreshing.set(!uc.finishRefreshing.get())
+                        finishLoad()
                         ToastUtils.showShort(e.message)
                         e.printStackTrace()
                     }
 
                     override fun onSubscribe(d: Disposable) {
-//                        ToastUtils.showShort("下拉刷新")
                     }
 
                     override fun onComplete() {
                         dismissDialog()
-                        uc.finishRefreshing.set(!uc.finishRefreshing.get())
+                        finishLoad()
                     }
                 })
     }
-
+    fun finishLoad(){
+        if (loadMore) {
+            uc.finishLoadmore.set(!uc.finishLoadmore.get())
+        } else {
+            uc.finishRefreshing.set(!uc.finishRefreshing.get())
+        }
+    }
 }

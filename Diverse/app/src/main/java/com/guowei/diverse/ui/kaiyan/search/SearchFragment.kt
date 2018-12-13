@@ -23,6 +23,7 @@ import com.guowei.diverse.model.eye.Item
 import com.guowei.diverse.ui.kaiyan.page.PagerAdapter
 import com.guowei.diverse.util.TransformerUtil
 import com.trello.rxlifecycle2.components.support.RxDialogFragment
+import kotlinx.android.synthetic.main.fragment_page.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.search_help.*
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager

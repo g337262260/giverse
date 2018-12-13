@@ -1,27 +1,21 @@
 package com.guowei.diverse.ui.kaiyan.page
 
-import android.annotation.SuppressLint
 import android.app.Application
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableBoolean
-import android.support.v7.widget.RecyclerView
 import com.guowei.diverse.api.Api
-import com.guowei.diverse.app.Constant
 import com.guowei.diverse.app.NetWorkManager
-import com.guowei.diverse.app.ViewTypeEnum
 import com.guowei.diverse.model.eye.ColumnPage
-import com.guowei.diverse.model.eye.Item
+import com.guowei.diverse.model.eye.PageModel
 import com.guowei.diverse.util.TransformerUtil
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import me.goldze.mvvmhabit.base.BaseViewModel
 import me.goldze.mvvmhabit.binding.command.BindingAction
 import me.goldze.mvvmhabit.binding.command.BindingCommand
-import me.goldze.mvvmhabit.binding.command.BindingConsumer
 import me.goldze.mvvmhabit.utils.ToastUtils
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager
-
 
 
 /**
@@ -30,23 +24,23 @@ import me.jessyan.retrofiturlmanager.RetrofitUrlManager
  */
 class PageViewModel(application: Application) : BaseViewModel(application) {
 
-    var pages = MutableLiveData<ColumnPage>()
-    private lateinit var url :String
-    private lateinit var next_url :String
-    @SuppressLint("StaticFieldLeak")
-    lateinit var recyclerView : RecyclerView
-    private var mItemList: List<Item>? = null
-    private var mAdapter: PagerAdapter? = null
+    var pages = MutableLiveData<PageModel>()
+    private var url: String = ""
+    private var next_url: String = ""
+    private var loadMore: Boolean = false
 
     var uc = UIChangeObservable()
 
     //下拉刷新
     var onRefreshCommand = BindingCommand<BindingAction>(BindingAction {
-        requestNetWork(url)})
+        loadMore = false
+        requestNetWork(url, false)
+    })
     //上拉加载
     var onLoadMoreCommand = BindingCommand<BindingAction>(BindingAction {
-        requestNetWork(next_url)
-        requestNetWork(url)})
+        loadMore = true
+        requestNetWork(next_url, true)
+    })
 
 
     inner class UIChangeObservable {
@@ -56,8 +50,10 @@ class PageViewModel(application: Application) : BaseViewModel(application) {
         var finishLoadmore = ObservableBoolean(false)
     }
 
-    fun requestNetWork(url:String) {
-        this.url = url
+    fun requestNetWork(url: String, loadMore: Boolean) {
+        if (!loadMore) {
+            this.url = url
+        }
         RetrofitUrlManager.getInstance().putDomain(Api.KAIYANAPP, Api.APP_KAIYAN)
         NetWorkManager
                 .getInstance()
@@ -66,11 +62,11 @@ class PageViewModel(application: Application) : BaseViewModel(application) {
                 .compose(TransformerUtil.getDefaultTransformer())
                 .subscribe(object : Observer<ColumnPage> {
                     override fun onNext(t: ColumnPage) {
-                        pages.postValue(t)
-                        mItemList = t.itemList.filter {
-                            Constant.ViewTypeList.contains(ViewTypeEnum.getViewTypeEnum(it.type))
+                        if (loadMore) {
+
                         }
-                        mAdapter?.setData(mItemList as ArrayList<Item>, false)
+                        val model = PageModel(loadMore, t)
+                        pages.postValue(model)
                         next_url = t.nextPageUrl
                     }
 
@@ -78,27 +74,31 @@ class PageViewModel(application: Application) : BaseViewModel(application) {
                         //关闭对话框
                         dismissDialog()
                         //请求刷新完成收回
-                        uc.finishRefreshing.set(!uc.finishRefreshing.get())
+                        finishLoad()
                         ToastUtils.showShort(e.message)
                         e.printStackTrace()
                     }
 
                     override fun onSubscribe(d: Disposable) {
-//                        ToastUtils.showShort("下拉刷新")
+                        showDialog()
                     }
 
                     override fun onComplete() {
                         dismissDialog()
-                        uc.finishRefreshing.set(!uc.finishRefreshing.get())
+                        finishLoad()
                     }
                 })
     }
 
-    fun getPage(): LiveData<ColumnPage> {
+    fun getPage(): LiveData<PageModel> {
         return this.pages
     }
-    var recycler: BindingCommand<RecyclerView> = BindingCommand(BindingConsumer {
-        recyclerView -> this@PageViewModel.recyclerView = recyclerView
-        recyclerView.adapter = mAdapter
-    })
+
+    fun finishLoad(){
+        if (loadMore) {
+            uc.finishLoadmore.set(!uc.finishLoadmore.get())
+        }else{
+            uc.finishRefreshing.set(!uc.finishRefreshing.get())
+        }
+    }
 }
