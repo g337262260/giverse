@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.guowei.diverse.ui.news.newslist.NewsListItemViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.guowei.diverse.ui.news.newslist.NewsListItemViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:binding="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_bg"
+        android:orientation="vertical"
+        android:padding="10dp"
+        binding:onClickCommand="@{viewModel.itemClick}"
+        binding:onLongClickCommand="@{viewModel.itemLongClick}">
+
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/news_title"
+            android:layout_width="match_parent"
+            android:text="@{viewModel.entity.title}"
+            android:textColor="@color/color_222222"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="10dp"
+            binding:currentView="@{viewModel.center_rl}"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/iv_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                binding:url="@{viewModel.entity.video_detail_info.detail_video_large_image.url}"
+                android:src="@mipmap/ic_default" />
+
+            <ImageView
+                android:id="@+id/iv_play"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/selector_play_video" />
+
+            <LinearLayout
+                android:id="@+id/ll_bottom_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="5dp"
+                android:background="@drawable/shape_rectangle_translucent"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/tv_bottom_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="2dp"
+                    android:gravity="center"
+                    android:minWidth="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="8sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <com.guowei.diverse.widget.BorderTextView
+                android:id="@+id/tv_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="置顶"
+                android:textSize="9sp"
+                android:textColor="@color/color_F96B6B"
+                binding:currentView="@{viewModel.borderTextView}"
+                />
+
+            <TextView
+                android:id="@+id/tv_author"
+                android:layout_marginLeft="5dp"
+                style="@style/news_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.entity.source}"
+                android:textColor="@color/color_999999"
+                android:textSize="11sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_comment_num"
+                style="@style/news_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@{viewModel.param.comment_count}"
+                binding:currentView="@{viewModel.commentTextView}"
+                android:textColor="@color/color_999999"
+                android:textSize="11sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_time"
+                style="@style/news_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_999999"
+                android:text="@{viewModel.param.behot_time}"
+                android:textSize="11sp"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

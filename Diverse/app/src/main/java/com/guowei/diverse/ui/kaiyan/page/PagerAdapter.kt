@@ -29,7 +29,6 @@ import com.guowei.diverse.ui.kaiyan.video.VideoPlayActivity
 import com.guowei.diverse.util.TimeUtil
 import com.yjq.eyepetizer.bean.cards.item.DynamicInfoCard
 import com.yjq.eyepetizer.bean.cards.item.TextCard
-import me.goldze.mvvmhabit.utils.KLog
 
 
 /**
@@ -108,7 +107,7 @@ class PagerAdapter(val mContext: Context) : RecyclerView.Adapter<CommonViewHolde
     override fun onBindViewHolder(holder: CommonViewHolder, position: Int) {
 
         when (getItemViewType(position)) {
-            ViewTypeEnum.TheEnd.value -> initTheEndView(holder, position)
+            ViewTypeEnum.TheEnd.value -> initTheEndView(holder)
             ViewTypeEnum.TextCard.value -> initTextCardView(holder, position)
             ViewTypeEnum.BriefCard.value -> initBriefCardView(holder, position)
             ViewTypeEnum.FollowCard.value -> initFollowCardView(holder, position)
@@ -125,7 +124,7 @@ class PagerAdapter(val mContext: Context) : RecyclerView.Adapter<CommonViewHolde
      */
 
     //没有更多数据，到底部的提示ItemView
-    private fun initTheEndView(holder: CommonViewHolder, position: Int) {
+    private fun initTheEndView(holder: CommonViewHolder) {
         val itemTheEndBinding = DataBindingUtil.getBinding<ItemTheEndBinding>(holder.itemView)!!
 
         with(itemTheEndBinding) {
@@ -409,11 +408,6 @@ class PagerAdapter(val mContext: Context) : RecyclerView.Adapter<CommonViewHolde
     private fun startVideoActivity(videoId: String, videoTitle: String, videoFeedUrl: String, videoPlayUrl: String, videoBgUrl: String) {
         mContext.startActivity(
                 Intent(mContext, VideoPlayActivity::class.java).apply {
-                    KLog.d("VIDEO",videoId)
-                    KLog.d("VIDEO",videoBgUrl)
-                    KLog.d("VIDEO",videoTitle)
-                    KLog.d("VIDEO",videoFeedUrl)
-                    KLog.d("VIDEO",videoPlayUrl)
                     putExtra("VIDEO_ID", videoId)
                     putExtra("VIDEO_BG", videoBgUrl)
                     putExtra("VIDEO_TITLE", videoTitle)

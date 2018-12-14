@@ -37,4 +37,11 @@
     <string name="publish">发布:</string>
     <string name="rewind"><![CDATA[<<]]></string>
     <string name="fast_forward"><![CDATA[>>]]></string>
+    //-------------------------------------------------------------------------
+    <string name="to_top">置顶</string>
+    <string name="ad">广告</string>
+    <string name="tag_movie">影视</string>
+    <string name="video_play_count">%s次播放</string>
+    <string name="video_parse_busy">视频解析繁忙，请更换网络或稍后再试</string>
+    <string name="video_parse_error">解析视频失败，请重试</string>
 </resources>

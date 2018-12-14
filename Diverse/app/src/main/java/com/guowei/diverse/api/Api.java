@@ -30,10 +30,12 @@ public interface Api {
     String APP_DOUBAN_DOMAIN = "https://api.douban.com";
     String APP_WANANDROID = "http://www.wanandroid.com";
     String APP_KAIYAN = "http://baobab.kaiyanapp.com";
+    String APP_TOUTIAO = "http://is.snssdk.com/";
 
     String GITHUB_DOMAIN_NAME = "github";
     String GANK_DOMAIN_NAME = "gank";
     String DOUBAN_DOMAIN_NAME = "douban";
     String WANANDROID = "wanandroid";
     String KAIYANAPP = "kaiyanapp";
+    String TOUTIAO = "snssdk";
 }

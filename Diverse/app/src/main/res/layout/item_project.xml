@@ -16,14 +16,9 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp_8"
-        android:layout_marginEnd="@dimen/dp_12"
-        android:layout_marginStart="@dimen/dp_12"
-        android:layout_marginTop="@dimen/dp_8"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/color1"
         app:cardCornerRadius="@dimen/dp_3"
         app:cardElevation="@dimen/dp_2">
 
@@ -35,7 +30,7 @@
             android:orientation="vertical"
             binding:onClickCommand="@{viewModel.itemClick}"
             binding:onLongClickCommand="@{viewModel.itemLongClick}"
-            android:padding="@dimen/dp_12">
+            android:padding="@dimen/dp_10">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -65,7 +60,7 @@
                     android:layout_toRightOf="@id/item_search_pager_author"
                     android:gravity="end"
                     android:text="@{viewModel.entity.superChapterName}"
-                    android:textColor="@color/color5" />
+                    android:textColor="@color/color3" />
             </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"

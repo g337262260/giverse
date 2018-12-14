@@ -20,6 +20,7 @@ import android.content.Context;
 import com.guowei.diverse.BuildConfig;
 import com.guowei.diverse.api.KaiyanService;
 import com.guowei.diverse.api.LearnService;
+import com.guowei.diverse.api.NewsService;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -55,6 +56,7 @@ public class NetWorkManager {
     private Retrofit mRetrofit;
     private LearnService mLearnService;
     private KaiyanService mKaiyanService;
+    private NewsService mNewsService;
 
     private static Context mContext = Utils.getContext();
     //缓存时间
@@ -130,6 +132,7 @@ public class NetWorkManager {
 
         this.mLearnService = mRetrofit.create(LearnService.class);
         this.mKaiyanService = mRetrofit.create(KaiyanService.class);
+        this.mNewsService = mRetrofit.create(NewsService.class);
 
     }
 
@@ -146,6 +149,9 @@ public class NetWorkManager {
     }
     public KaiyanService getKaiyanService() {
         return mKaiyanService;
+    }
+    public NewsService getNewsService() {
+        return mNewsService;
     }
 
 }

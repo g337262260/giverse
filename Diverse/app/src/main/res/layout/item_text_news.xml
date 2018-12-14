@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.guowei.diverse.ui.news.newslist.NewsListItemViewModel" />
+        <variable
+            name="viewModel"
+            type="com.guowei.diverse.ui.news.newslist.NewsListItemViewModel" />
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:binding="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="10dp"
+        binding:onClickCommand="@{viewModel.itemClick}"
+        binding:onLongClickCommand="@{viewModel.itemLongClick}">
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/news_title"
+            android:layout_width="match_parent"
+            android:text="@{viewModel.entity.title}"
+            android:textColor="@color/color_222222"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <com.guowei.diverse.widget.BorderTextView
+                android:id="@+id/tv_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="置顶"
+                android:textSize="9sp"
+                android:textColor="@color/color_F96B6B"
+                binding:currentView="@{viewModel.borderTextView}"
+                />
+
+            <TextView
+                android:id="@+id/tv_author"
+                android:layout_marginLeft="5dp"
+                style="@style/news_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.entity.source}"
+                android:textColor="@color/color_999999"
+                android:textSize="11sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_comment_num"
+                style="@style/news_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@{viewModel.param.comment_count}"
+                binding:currentView="@{viewModel.commentTextView}"
+                android:textColor="@color/color_999999"
+                android:textSize="11sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_time"
+                style="@style/news_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_999999"
+                android:text="@{viewModel.param.behot_time}"
+                android:textSize="11sp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

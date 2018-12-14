@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.guowei.diverse.ui.news.newslist.NewsListItemViewModel" />
+
+
+        <variable
+            name="viewModel"
+            type="com.guowei.diverse.ui.news.newslist.NewsListItemViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:binding="http://schemas.android.com/apk/res-auto"
+        android:background="@drawable/selector_bg"
+        android:orientation="vertical"
+        android:padding="10dp"
+        binding:onClickCommand="@{viewModel.itemClick}"
+        binding:onLongClickCommand="@{viewModel.itemLongClick}">
+
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/news_title"
+            android:layout_width="match_parent"
+            android:text="@{viewModel.entity.title}"
+            android:textColor="@color/color_222222" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/iv_img1"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                binding:url="@{viewModel.entity.image_list.get(0).url}"
+                android:src="@mipmap/ic_default" />
+
+            <ImageView
+                android:id="@+id/iv_img2"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                binding:url="@{viewModel.entity.image_list.get(1).url}"
+                android:src="@mipmap/ic_default" />
+
+            <ImageView
+                android:id="@+id/iv_img3"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                binding:url="@{viewModel.entity.image_list.get(2).url}"
+                android:src="@mipmap/ic_default" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <com.guowei.diverse.widget.BorderTextView
+                android:id="@+id/tv_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="置顶"
+                android:textSize="9sp"
+                android:textColor="@color/color_F96B6B"
+                binding:currentView="@{viewModel.borderTextView}"
+                />
+
+            <TextView
+                android:id="@+id/tv_author"
+                android:layout_marginLeft="5dp"
+                style="@style/news_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.entity.source}"
+                android:textColor="@color/color_999999"
+                android:textSize="11sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_comment_num"
+                style="@style/news_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@{viewModel.param.comment_count}"
+                binding:currentView="@{viewModel.commentTextView}"
+                android:textColor="@color/color_999999"
+                android:textSize="11sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_time"
+                style="@style/news_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_999999"
+                android:text="@{viewModel.param.behot_time}"
+                android:textSize="11sp"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

@@ -12,4 +12,14 @@ object Constant {
     val ViewTypeList = listOf(
             ViewTypeEnum.TextCard, ViewTypeEnum.BriefCard, ViewTypeEnum.DynamicInfoCard,
             ViewTypeEnum.FollowCard, ViewTypeEnum.VideoSmallCard, ViewTypeEnum.AutoPlayFollowCard)
+
+    /**已选中频道的json */
+    val SELECTED_CHANNEL_JSON = "selectedChannelJson"
+    /**w未选频道的json */
+    val UNSELECTED_CHANNEL_JSON = "unselectChannelJson"
+
+    val ARTICLE_GENRE_VIDEO = "video"
+    val ARTICLE_GENRE_AD = "ad"
+    val TAG_MOVIE = "video_movie"
+
 }
