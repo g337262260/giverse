@@ -19,11 +19,23 @@
         android:supportsRtl="true"
         android:theme="@style/SplashStyle"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.MainActivity" />
-        <activity android:name=".ui.learn.read.ReadActivity" />
-        <activity android:name=".ui.learn.tree.child.TreeChildActivity" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.learn.read.ReadActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.learn.tree.child.TreeChildActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait" />
         <activity android:name=".ui.test.TestActivity" />
-        <activity android:name=".ui.learn.wechat.article.ArticleActivity" />
+        <activity
+            android:name=".ui.learn.wechat.article.ArticleActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.kaiyan.video.VideoPlayActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -35,8 +47,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.news.detail.VideoDetailActivity" />
-        <activity android:name=".ui.news.detail.NewsDetailActivity"></activity>
+        <activity
+            android:name=".ui.news.detail.VideoDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.news.detail.NewsDetailActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.news.detail.ImageViewPagerActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

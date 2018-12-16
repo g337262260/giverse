@@ -10,7 +10,7 @@ import retrofit2.http.*
 
 /**
  * Writer：GuoWei_aoj on 2018/12/10 0010 10:42
- * description:
+ * description:开眼app的部分api
  */
 interface KaiyanService {
 

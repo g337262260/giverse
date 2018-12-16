@@ -1,8 +1,12 @@
 package com.guowei.diverse.app
 
 import android.app.Application
+import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import com.guowei.diverse.BuildConfig
 import com.guowei.diverse.R
+
 import me.goldze.mvvmhabit.base.BaseApplication
 import me.goldze.mvvmhabit.crash.CaocConfig
 import me.goldze.mvvmhabit.utils.KLog
@@ -41,5 +45,10 @@ class DiverseApplication : BaseApplication() {
 
     companion object {
         lateinit var INSTANCE: Application
+        fun getContext(): Context {
+            return BaseApplication.getInstance().applicationContext
+        }
     }
+
+
 }

@@ -14,6 +14,8 @@ import com.guowei.diverse.model.learn.NewestModel
 import com.guowei.diverse.model.toutiao.News
 import com.guowei.diverse.model.toutiao.Param
 import com.guowei.diverse.ui.learn.read.ReadActivity
+import com.guowei.diverse.ui.news.detail.NewsDetailActivity
+import com.guowei.diverse.ui.news.detail.VideoDetailActivity
 import com.guowei.diverse.widget.BorderTextView
 import me.goldze.mvvmhabit.base.ItemViewModel
 import me.goldze.mvvmhabit.binding.command.BindingAction
@@ -48,7 +50,8 @@ class NewsListItemViewModel : ItemViewModel<NewsListViewModel> {
     var itemClick = BindingCommand<BindingAction>(BindingAction {
         val mBundle = Bundle()
         if (entity.has_video) {
-            mBundle.putString("VIDEO_ID",entity.item_id)
+            mBundle.putString("VIDEO_ITEM_ID",entity.item_id)
+            mBundle.putString("VIDEO_GROUP_ID",entity.group_id)
             if (entity.middle_image!=null) {
                 mBundle.putString("VIDEO_BG",entity.middle_image.url)
             }else if (entity.image_list!=null){
@@ -61,18 +64,18 @@ class NewsListItemViewModel : ItemViewModel<NewsListViewModel> {
             val urlSb = StringBuffer("http://m.toutiao.com/i")
             urlSb.append(itemId).append("/info/")
             mBundle.putString("VIDEO_PLAY_URL",urlSb.toString())
-//            viewModel.startActivity(VideoDetailActivity::class.java,mBundle)
+            viewModel.startActivity(VideoDetailActivity::class.java,mBundle)
         }else{
+            val newest = NewestModel.DatasBean()
+            newest.title = entity.title
+            newest.link = entity.article_url
+            mBundle.putParcelable("entity", newest)
             if(entity.article_type==1){
                 //web
-                val newest = NewestModel.DatasBean()
-                newest.title = entity.title
-                newest.link = entity.article_url
-                mBundle.putParcelable("entity", newest)
                 viewModel.startActivity(ReadActivity::class.java,mBundle)
             }else{
                 //其他新闻
-//                viewModel.startActivity(NewsDetailActivity::class.java)
+                viewModel.startActivity(NewsDetailActivity::class.java,mBundle)
             }
         }
     })
@@ -166,7 +169,6 @@ class NewsListItemViewModel : ItemViewModel<NewsListViewModel> {
                 }
             }
             text = tagText
-            KLog.a("tagText",tagText)
         }
     }
 

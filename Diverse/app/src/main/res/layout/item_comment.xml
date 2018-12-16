@@ -3,11 +3,11 @@
 
     <data>
 
-        <import type="com.guowei.diverse.ui.learn.newest.NewestItemViewModel" />
+        <import type="com.guowei.diverse.ui.news.newslist.CommentItemViewModel" />
 
         <variable
             name="viewModel"
-            type="com.guowei.diverse.ui.learn.newest.NewestItemViewModel" />
+            type="com.guowei.diverse.ui.news.newslist.CommentItemViewModel" />
     </data>
 
     <android.support.v7.widget.CardView
@@ -28,8 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            binding:onClickCommand="@{viewModel.itemClick}"
-            binding:onLongClickCommand="@{viewModel.itemLongClick}"
             android:padding="10dp"
             >
 
@@ -47,7 +45,6 @@
                     android:drawablePadding="@dimen/dp_5"
                     android:drawableStart="@drawable/article_author"
                     android:gravity="center"
-                    android:text="@{viewModel.entity.author}"
                     android:textColor="@color/learn_title" />
 
                 <TextView
@@ -60,7 +57,6 @@
                     android:layout_toEndOf="@id/item_search_pager_author"
                     android:layout_toRightOf="@id/item_search_pager_author"
                     android:gravity="end"
-                    android:text="@{viewModel.entity.superChapterName}"
                     android:textColor="@color/color3" />
             </RelativeLayout>
 
@@ -69,7 +65,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10"
-                android:text="@{viewModel.entity.title}"
                 android:textColor="@color/learn_title"
                 android:textSize="@dimen/sp_16" />
 
@@ -83,7 +78,6 @@
                 android:layout_gravity="right"
                 android:layout_marginTop="@dimen/dp_8"
                 android:layout_marginRight="@dimen/dp_20"
-                android:text="@{viewModel.entity.niceDate}"
                 />
         </LinearLayout>
     </android.support.v7.widget.CardView>

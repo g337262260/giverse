@@ -22,4 +22,7 @@ object Constant {
     val ARTICLE_GENRE_AD = "ad"
     val TAG_MOVIE = "video_movie"
 
+    /**获取评论列表每页的数目 */
+    val COMMENT_PAGE_SIZE = 20
+
 }

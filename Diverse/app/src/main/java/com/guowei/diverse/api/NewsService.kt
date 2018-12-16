@@ -41,6 +41,7 @@ interface NewsService {
      * @param count
      * @return
      */
+    @Headers(RetrofitUrlManager.DOMAIN_NAME_HEADER + Api.TOUTIAO)
     @GET("article/v2/tab_comments/")
     abstract fun getComment(@Query("group_id") groupId: String, @Query("item_id") itemId: String, @Query("offset") offset: String, @Query("count") count: String): Observable<CommentResponse>
 

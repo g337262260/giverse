@@ -139,7 +139,7 @@ class PagerAdapter(val mContext: Context) : RecyclerView.Adapter<CommonViewHolde
         //init data
         val jsonObject = mDataList[position].data
         val followCard = Gson().fromJson(jsonObject, FollowCard::class.java)
-        val videoJson = Gson().toJson(jsonObject)
+//        val videoJson = Gson().toJson(jsonObject)
 
         val avatarUrl = followCard.header.icon                                                           //发布者头像
         val title = followCard.content.data.title                                                        //标题
@@ -202,7 +202,7 @@ class PagerAdapter(val mContext: Context) : RecyclerView.Adapter<CommonViewHolde
         //init data
         val jsonObject = mDataList[position].data
         val videoSmallCard = Gson().fromJson(jsonObject, VideoSmallCard::class.java)
-        val videoJson = Gson().toJson(jsonObject)
+//        val videoJson = Gson().toJson(jsonObject)
 
         val videoTitle = videoSmallCard.title                                                       //视频标题
         val videoPlayUrl = videoSmallCard.playUrl                                                   //视频播放地址
@@ -261,7 +261,7 @@ class PagerAdapter(val mContext: Context) : RecyclerView.Adapter<CommonViewHolde
 
         //init data
         val jsonObject = mDataList[position].data
-        val videoJson = Gson().toJson(jsonObject)
+//        val videoJson = Gson().toJson(jsonObject)
         val dynamicInfoCard = Gson().fromJson(jsonObject, DynamicInfoCard::class.java)
 
 
@@ -315,7 +315,7 @@ class PagerAdapter(val mContext: Context) : RecyclerView.Adapter<CommonViewHolde
 
         //init data
         val jsonObject = mDataList[position].data
-        val videoJson = Gson().toJson(jsonObject)
+//        val videoJson = Gson().toJson(jsonObject)
 
         val autoPlayFollowCard = Gson().fromJson(jsonObject, AutoPlayFollowCard::class.java)
         val iconUrl = autoPlayFollowCard.header.icon                                           //头像Url

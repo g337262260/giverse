@@ -12,6 +12,7 @@ import com.guowei.diverse.model.learn.NewestModel
 import com.just.agentweb.AgentWeb
 import kotlinx.android.synthetic.main.activity_read.*
 
+
 class ReadActivity : Activity() {
 
     private var mAgentWeb: AgentWeb? = null

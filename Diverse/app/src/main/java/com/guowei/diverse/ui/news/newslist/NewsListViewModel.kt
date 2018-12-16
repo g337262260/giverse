@@ -5,6 +5,7 @@ import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableList
 import android.text.TextUtils
+import android.util.Log
 import com.google.gson.Gson
 import com.guowei.diverse.BR
 import com.guowei.diverse.R
