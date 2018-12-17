@@ -48,7 +48,13 @@ class NewsListItemViewModel : ItemViewModel<NewsListViewModel> {
 
     //条目的点击事件
     var itemClick = BindingCommand<BindingAction>(BindingAction {
+        KLog.e("article------------",entity.article_type)
+        KLog.e("article------------",entity.has_video)
+        KLog.e("article------------",entity)
         val mBundle = Bundle()
+        val itemId = entity.item_id
+        val urlSb = StringBuffer("http://m.toutiao.com/i")
+        urlSb.append(itemId).append("/info/")
         if (entity.has_video) {
             mBundle.putString("VIDEO_ITEM_ID",entity.item_id)
             mBundle.putString("VIDEO_GROUP_ID",entity.group_id)
@@ -58,22 +64,23 @@ class NewsListItemViewModel : ItemViewModel<NewsListViewModel> {
                 mBundle.putString("VIDEO_BG",entity.image_list[0].url.replace("list/300x196", "large"))
             }else if(entity.video_detail_info!=null){
                 mBundle.putString("VIDEO_BG",entity.video_detail_info.detail_video_large_image.url)
+            }else{
+                mBundle.putString("VIDEO_BG",Constant.ZHANWEI)
             }
             mBundle.putString("VIDEO_TITLE",entity.title)
-            val itemId = entity.item_id
-            val urlSb = StringBuffer("http://m.toutiao.com/i")
-            urlSb.append(itemId).append("/info/")
             mBundle.putString("VIDEO_PLAY_URL",urlSb.toString())
             viewModel.startActivity(VideoDetailActivity::class.java,mBundle)
         }else{
             val newest = NewestModel.DatasBean()
             newest.title = entity.title
-            newest.link = entity.article_url
-            mBundle.putParcelable("entity", newest)
             if(entity.article_type==1){
                 //web
+                newest.link = entity.article_url
+                mBundle.putParcelable("entity", newest)
                 viewModel.startActivity(ReadActivity::class.java,mBundle)
             }else{
+                newest.link = urlSb.toString()
+                mBundle.putParcelable("entity", newest)
                 //其他新闻
                 viewModel.startActivity(NewsDetailActivity::class.java,mBundle)
             }

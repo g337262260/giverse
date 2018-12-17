@@ -10,15 +10,13 @@ import com.guowei.diverse.BR
 import com.guowei.diverse.R
 import com.guowei.diverse.app.Constant
 import com.guowei.diverse.app.NetWorkManager
-import com.guowei.diverse.model.learn.BannerModel
 import com.guowei.diverse.model.toutiao.CommentResponse
 import com.guowei.diverse.model.toutiao.NewsDetail
+import com.guowei.diverse.model.toutiao.Param
 import com.guowei.diverse.model.toutiao.ResultResponse
-import com.guowei.diverse.ui.learn.newest.NewestItemViewModel
 import com.guowei.diverse.ui.news.newslist.CommentItemViewModel
-import com.guowei.diverse.ui.news.newslist.NewsListItemViewModel
+import com.guowei.diverse.util.TimeUtil
 import com.guowei.diverse.util.TransformerUtil
-import com.guowei.diverse.util.UIUtils
 import com.guowei.diverse.util.VideoPathDecoder
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
@@ -114,7 +112,8 @@ class VideoDetailViewModel(application: Application) : BaseViewModel(application
                     override fun onNext(t: CommentResponse) {
                         size = t.data.size
                         for (item in t.data) {
-                            val itemViewModel = CommentItemViewModel(this@VideoDetailViewModel, item)
+                            val param = Param(item.comment.digg_count.toString(),0,"","", TimeUtil.getShortTime(item.comment.create_time * 1000))
+                            val itemViewModel = CommentItemViewModel(this@VideoDetailViewModel, item,param)
                             //双向绑定动态添加Item
                             observableList.add(itemViewModel)
                         }
@@ -130,6 +129,8 @@ class VideoDetailViewModel(application: Application) : BaseViewModel(application
                     }
 
                     override fun onSubscribe(d: Disposable) {
+                        showDialog()
+
                     }
 
                     override fun onComplete() {

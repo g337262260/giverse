@@ -22,6 +22,8 @@ object Constant {
     val ARTICLE_GENRE_AD = "ad"
     val TAG_MOVIE = "video_movie"
 
+    val ZHANWEI = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545023579265&di=3c36124a3f5ab9207d680451e0af3327&imgtype=0&src=http%3A%2F%2Fdown.admin5.com%2Fuploads%2Fallimg%2F141111%2F2069_141111091611_1.png"
+
     /**获取评论列表每页的数目 */
     val COMMENT_PAGE_SIZE = 20
 

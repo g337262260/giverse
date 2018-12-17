@@ -7,7 +7,7 @@ package com.guowei.diverse.model.toutiao
 
 data class Param(
         //评论数量
-        val comment_count: String,
+        var comment_count: String,
         //position of item
         val position:Int,
         //新闻类型

@@ -82,7 +82,7 @@
                 android:drawablePadding="10dp"
                 android:layout_gravity="right"
                 android:layout_marginTop="@dimen/dp_8"
-                android:layout_marginRight="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_8"
                 android:text="@{viewModel.entity.niceDate}"
                 />
         </LinearLayout>

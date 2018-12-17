@@ -1,7 +1,6 @@
 package com.guowei.diverse.ui.news.detail
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.webkit.WebView
@@ -12,7 +11,6 @@ import com.guowei.diverse.databinding.ActivityNewsDetailBinding
 import com.guowei.diverse.model.learn.NewestModel
 import kotlinx.android.synthetic.main.activity_news_detail.*
 import me.goldze.mvvmhabit.base.BaseActivity
-import me.goldze.mvvmhabit.utils.KLog
 
 class NewsDetailActivity : BaseActivity<ActivityNewsDetailBinding,NewsDetailViewModel>() {
 
@@ -30,12 +28,12 @@ class NewsDetailActivity : BaseActivity<ActivityNewsDetailBinding,NewsDetailView
     override fun initData() {
         val entity = intent.getParcelableExtra<NewestModel.DatasBean>("entity")
         title_content.text = entity.title
-        KLog.e("link-----",entity.link)
+        wv_title.text = entity.title
+        title_left_icon.setOnClickListener { finish() }
         viewModel.requestVideoDetail(entity.link)
         viewModel.getDetail().observe(this, Observer {
-            KLog.d("link-----",it?.content)
             wv_content.settings.javaScriptEnabled = true
-//            wv_content.addJavascriptInterface(ShowPicRelation(this), NICK)
+            wv_content.addJavascriptInterface(ShowPicRelation(this),"ChayChan" )
             val htmlPart1 = "<!DOCTYPE HTML html>\n" +
                     "<head><meta charset=\"utf-8\"/>\n" +
                     "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no\"/>\n" +

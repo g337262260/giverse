@@ -3,6 +3,7 @@ package com.guowei.diverse.ui.learn.newest
 
 import android.arch.lifecycle.Observer
 import android.databinding.Observable
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,8 @@ import me.goldze.mvvmhabit.base.BaseFragment
 import java.util.*
 
 
+
+
 class NewestFragment : BaseFragment<FragmentNewestBinding, NewestViewModel>() {
 
 
@@ -34,6 +37,7 @@ class NewestFragment : BaseFragment<FragmentNewestBinding, NewestViewModel>() {
     }
 
     override fun initData() {
+
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE)
         banner.setImageLoader(GlideImageLoader())
         banner.setOnBannerListener { position ->

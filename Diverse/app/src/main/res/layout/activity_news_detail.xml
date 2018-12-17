@@ -66,6 +66,13 @@
                 android:textColor="@color/white"
                 android:layout_gravity="center"/>
         </FrameLayout>
+        <TextView
+            android:id="@+id/wv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/color_222222"
+            android:layout_margin="8dp" />
         <WebView
             android:id="@+id/wv_content"
             android:layout_width="match_parent"

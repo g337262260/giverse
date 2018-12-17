@@ -27,7 +27,6 @@ import me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 
 
-
 /**
  * Writer：GuoWei_aoj on 2018/12/5 0005 09:18
  * description:
@@ -100,6 +99,7 @@ class NewestViewModel(application: Application) : BaseViewModel(application) {
                     }
 
                     override fun onSubscribe(d: Disposable) {
+                        showDialog()
                     }
 
                     override fun onComplete() {
