@@ -2,12 +2,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.guowei.diverse.ui.other.OtherFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <FrameLayout
+        android:id="@+id/mWebContent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+        android:layout_height="match_parent"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/other_back"
+        android:layout_width="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        app:elevation="20dp"
+        android:src="@drawable/ic_back1"
+        app:backgroundTint="@color/color3"
+        app:rippleColor="@color/color2"
+        app:fabSize="mini"
+        android:layout_height="wrap_content" />
 </FrameLayout>

@@ -50,7 +50,7 @@ class NewsListViewModel(application: Application) : BaseViewModel(application) {
     var observableList: ObservableList<NewsListItemViewModel> = ObservableArrayList()
     //给RecyclerView添加Adpter，请使用自定义的Adapter继承BindingRecyclerViewAdapter，重写onBindBinding方法
 
-    var itemBinding = ItemBinding.of(OnItemBind<NewsListItemViewModel> { itemBinding, position, item ->
+    var itemBinding = ItemBinding.of(OnItemBind<NewsListItemViewModel> { itemBinding, _, item ->
         val news = item.entity
         if (category == "video") {
             itemBinding.set(BR.viewModel, R.layout.item_text_news)

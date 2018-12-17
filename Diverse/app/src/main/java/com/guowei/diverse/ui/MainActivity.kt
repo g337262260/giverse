@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.view.KeyEvent
+import android.view.WindowManager
 import android.widget.Toast
 import com.guowei.diverse.BR
 import com.guowei.diverse.R
@@ -25,13 +26,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
 
     private var mFragments: ArrayList<Fragment>? = null
 
-    private val titles = arrayOf("学习","开眼","头条","其他")
+    private val titles = arrayOf("学习","开眼","头条","豆瓣")
 
     override fun initVariableId(): Int {
         return BR.viewModel
     }
 
     override fun initContentView(savedInstanceState: Bundle?): Int {
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         return R.layout.activity_main
     }
 
@@ -63,7 +65,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
                 .addItem(R.drawable.ic_learn, titles[0],ContextCompat.getColor(this, R.color.color3))
                 .addItem(R.drawable.ic_kaiyan, titles[1],ContextCompat.getColor(this, R.color.color3))
                 .addItem(R.drawable.ic_toutiao, titles[2],ContextCompat.getColor(this, R.color.color3))
-                .addItem(R.mipmap.wode_select, titles[3])
+                .addItem(R.drawable.ic_tool, titles[3],ContextCompat.getColor(this, R.color.color3))
                 .setDefaultColor(ContextCompat.getColor(this, R.color.color5))
                 .build()
         //底部按钮的点击事件监听
@@ -88,10 +90,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
                 //大于2000ms则认为是误操作，使用Toast进行提示
                 Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show()
                 //并记录下本次点击“返回键”的时刻，以便下次进行判断
-                mExitTime = System.currentTimeMillis();
+                mExitTime = System.currentTimeMillis()
             } else {
                 //小于2000ms则认为是用户确实希望退出程序-调用System.exit()方法进行退出
-                System.exit(0);
+                System.exit(0)
             }
             return true
         }

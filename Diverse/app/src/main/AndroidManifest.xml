@@ -18,8 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashStyle"
-        tools:replace="android:icon"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name=".ui.MainActivity"
             android:configChanges="keyboardHidden|screenSize|orientation"

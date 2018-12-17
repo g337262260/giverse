@@ -29,6 +29,7 @@ import com.guowei.diverse.ui.kaiyan.video.VideoPlayActivity
 import com.guowei.diverse.util.TimeUtil
 import com.yjq.eyepetizer.bean.cards.item.DynamicInfoCard
 import com.yjq.eyepetizer.bean.cards.item.TextCard
+import me.goldze.mvvmhabit.utils.KLog
 
 
 /**
@@ -320,7 +321,7 @@ class PagerAdapter(val mContext: Context) : RecyclerView.Adapter<CommonViewHolde
         val autoPlayFollowCard = Gson().fromJson(jsonObject, AutoPlayFollowCard::class.java)
         val iconUrl = autoPlayFollowCard.header.icon                                           //头像Url
         val tags = autoPlayFollowCard.content.data.tags                                        //标签列表
-        val title = autoPlayFollowCard.content.data.title                                      //标题
+        val title = autoPlayFollowCard.content.data.title                                     //标题
         val issueName = autoPlayFollowCard.header.issuerName                                   //头像代表名称
         val playUrl = autoPlayFollowCard.content.data.playUrl                                  //视频播放地址
         val videoId = autoPlayFollowCard.content.data.id.toString()                            //视频ID
@@ -329,15 +330,26 @@ class PagerAdapter(val mContext: Context) : RecyclerView.Adapter<CommonViewHolde
         val videoCoverUrl = autoPlayFollowCard.content.data.cover.detail                       //视频封面Url
         val replyCount = autoPlayFollowCard.content.data.consumption.replyCount                //评论数
         val collectionCount = autoPlayFollowCard.content.data.consumption.collectionCount      //点赞数
-
+        KLog.e("autoPlay----------",iconUrl)
+        KLog.e("autoPlay----------",tags)
+        KLog.e("autoPlay----------",title)
+        KLog.e("autoPlay----------",issueName)
+        KLog.e("autoPlay----------",playUrl)
+        KLog.e("autoPlay----------",videoId)
+        KLog.e("autoPlay----------",videoDuration)
+        KLog.e("autoPlay----------",description)
+        KLog.e("autoPlay----------",videoCoverUrl)
+        KLog.e("autoPlay----------",replyCount)
+        KLog.e("autoPlay----------",collectionCount)
         with(itemAutoPlayFollowCardBinding!!) {
 
 
             //initView
             ImageLoader.loadNetCircleImage(mContext, ivAvatar, iconUrl)
             ImageLoader.loadNetImageWithCorner(mContext, ivVideoCover, videoCoverUrl)
-
-            tvTitle.text = title
+            if (title!=null) {
+                tvTitle.text = title
+            }
             tvIssueName.text = issueName
             tvDescription.text = description
             tvReply.text = replyCount.toString()
@@ -347,11 +359,14 @@ class PagerAdapter(val mContext: Context) : RecyclerView.Adapter<CommonViewHolde
 
             flexLayout.removeAllViews()
             val layoutParams = FlexboxLayout.LayoutParams(FlexboxLayout.LayoutParams.WRAP_CONTENT, FlexboxLayout.LayoutParams.WRAP_CONTENT)
-            tags.forEach { itemTag ->
-                val itemView = LayoutInflater.from(mContext).inflate(R.layout.textview_tag, flexLayout, false)
-                itemView.findViewById<TextView>(R.id.tvTag).text = itemTag.name
-                flexLayout.addView(itemView, layoutParams)
+            if (tags!=null) {
+                tags.forEach { itemTag ->
+                    val itemView = LayoutInflater.from(mContext).inflate(R.layout.textview_tag, flexLayout, false)
+                    itemView.findViewById<TextView>(R.id.tvTag).text = itemTag.name
+                    flexLayout.addView(itemView, layoutParams)
+                }
             }
+
 
 
             //init  Event

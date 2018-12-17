@@ -16,16 +16,14 @@
 package com.guowei.diverse.app;
 
 import android.content.Context;
-import android.databinding.adapters.Converters;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.guowei.diverse.BuildConfig;
 import com.guowei.diverse.api.KaiyanService;
 import com.guowei.diverse.api.LearnService;
 import com.guowei.diverse.api.NewsService;
+import com.guowei.diverse.api.ToolsService;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import me.goldze.mvvmhabit.http.NetworkUtil;
@@ -37,7 +35,6 @@ import me.goldze.mvvmhabit.http.interceptor.logging.LoggingInterceptor;
 import me.goldze.mvvmhabit.utils.KLog;
 import me.goldze.mvvmhabit.utils.Utils;
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
-import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.ConnectionPool;
 import okhttp3.HttpUrl;
@@ -65,6 +62,7 @@ public class NetWorkManager {
     private LearnService mLearnService;
     private KaiyanService mKaiyanService;
     private NewsService mNewsService;
+    private ToolsService mToolsService;
 
     private static Context mContext = Utils.getContext();
     //缓存时间
@@ -124,13 +122,13 @@ public class NetWorkManager {
         }
         Response originalResponse = chain.proceed(request);
         if (NetworkUtil.isNetworkAvailable(Utils.getContext())) {
-            int maxAge = 0; // read from cache
+            int maxAge = 0;
             return originalResponse.newBuilder()
                     .removeHeader("Pragma")
                     .header("Cache-Control", "public ,max-age=" + maxAge)
                     .build();
         } else {
-            int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale
+            int maxStale = 60 * 60 * 24 * 28;
             return originalResponse.newBuilder()
                     .removeHeader("Pragma")
                     .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
@@ -178,6 +176,7 @@ public class NetWorkManager {
         this.mLearnService = mRetrofit.create(LearnService.class);
         this.mKaiyanService = mRetrofit.create(KaiyanService.class);
         this.mNewsService = mRetrofit.create(NewsService.class);
+        this.mToolsService = mRetrofit.create(ToolsService.class);
 
     }
 
@@ -198,5 +197,5 @@ public class NetWorkManager {
     public NewsService getNewsService() {
         return mNewsService;
     }
-
+    public ToolsService getToolsService(){return mToolsService;}
 }

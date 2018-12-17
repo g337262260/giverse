@@ -3,7 +3,6 @@ package com.guowei.diverse.ui.learn.newest
 
 import android.arch.lifecycle.Observer
 import android.databinding.Observable
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
