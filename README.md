@@ -6,8 +6,8 @@ A Diversity App about news ,movies and other interesting things
 - 学习：wanandroid
 - 开眼：kaiyanapi
 - 新闻：今日头条
-- 其他：
-> #### *本项目仅是个人学习，接口皆采取非正常手段获取. 本程序仅供学习交流, 不可用于任何商业用途 *
+- 豆瓣：豆瓣网站
+> *#### 本项目仅是个人学习，接口皆采取非正常手段获取. 本程序仅供学习交流, 不可用于任何商业用途 *
 
 # Thanks
 - [Wanandroid](http://www.wanandroid.com/blog/show/2)
